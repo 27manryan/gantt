@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -7,130 +8,131 @@
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:        #1a1f2e;
-  --bg-mid:    #1f2535;
-  --surface:   #252d40;
-  --surface-2: #2d3650;
-  --border:    rgba(255,255,255,0.06);
-  --border-2:  rgba(255,255,255,0.12);
-  --text:      #e2e8f8;
-  --text-2:    #8b96b0;
-  --text-3:    #4a5270;
-  --vantage:   #34d4b8;
-  --school-unlock: #a78bfa;
-  --school-carry:  #60a5fa;
-  --school-light:  #94a3b8;
-  --school-anchor: #f472b6;
-  --app:       #fb923c;
-  --va:        #c084fc;
-  --personal:  #4ade80;
-  --today:     #f43f5e;
-  --row-h:     54px;
-  --label-w:   230px;
+--bg: #1a1f2e;
+--bg-mid: #1f2535;
+--surface: #252d40;
+--surface-2: #2d3650;
+--border: rgba(255,255,255,0.06);
+--border-2: rgba(255,255,255,0.12);
+--text: #e2e8f8;
+--text-2: #8b96b0;
+--text-3: #4a5270;
+--vantage: #34d4b8;
+--school-unlock: #a78bfa;
+--school-carry: #60a5fa;
+--school-light: #94a3b8;
+--school-anchor: #f472b6;
+--app: #fb923c;
+--va: #c084fc;
+--personal: #4ade80;
+--today: #f43f5e;
+--row-h: 54px;
+--label-w: 230px;
 }
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{
-  font-family:'Outfit',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  display:flex;
-  flex-direction:column;
-  height:100vh;
-  overflow:hidden;
-  -webkit-font-smoothing:antialiased;
+font-family:‘Outfit’,sans-serif;
+background:var(–bg);
+color:var(–text);
+display:flex;
+flex-direction:column;
+height:100vh;
+overflow:hidden;
+-webkit-font-smoothing:antialiased;
 }
 
 /* HEADER */
 header{
-  padding:18px 28px 14px;
-  border-bottom:1px solid var(--border-2);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:12px;
-  flex-shrink:0;
+padding:18px 28px 14px;
+border-bottom:1px solid var(–border-2);
+display:flex;
+align-items:center;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:12px;
+flex-shrink:0;
 }
 .hdr-title{
-  font-size:11px;font-weight:600;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--text-3);margin-bottom:4px;
+font-size:11px;font-weight:600;letter-spacing:.14em;
+text-transform:uppercase;color:var(–text-3);margin-bottom:4px;
 }
 .hdr-date{
-  font-family:'JetBrains Mono',monospace;
-  font-size:12px;color:var(--today);letter-spacing:.04em;
+font-family:‘JetBrains Mono’,monospace;
+font-size:12px;color:var(–today);letter-spacing:.04em;
 }
 .legend{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;}
-.leg{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-2);}
+.leg{display:flex;align-items:center;gap:6px;font-size:12px;color:var(–text-2);}
 .leg-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0;}
 
 /* TOOLBAR */
 .toolbar{
-  padding:10px 28px;
-  border-bottom:1px solid var(--border);
-  background:var(--bg-mid);
-  display:flex;align-items:center;gap:6px;
-  flex-shrink:0;
+padding:10px 28px;
+border-bottom:1px solid var(–border);
+background:var(–bg-mid);
+display:flex;align-items:center;gap:6px;
+flex-shrink:0;
 }
 .tb-label{
-  font-family:'JetBrains Mono',monospace;font-size:10px;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-right:4px;
+font-family:‘JetBrains Mono’,monospace;font-size:10px;
+letter-spacing:.1em;text-transform:uppercase;color:var(–text-3);margin-right:4px;
 }
 .zpill{
-  padding:5px 13px;border-radius:20px;font-size:11px;font-weight:600;
-  background:var(--surface);border:1px solid var(--border-2);
-  color:var(--text-2);cursor:pointer;transition:all .14s;letter-spacing:.02em;
-  font-family:'Outfit',sans-serif;
+padding:5px 13px;border-radius:20px;font-size:11px;font-weight:600;
+background:var(–surface);border:1px solid var(–border-2);
+color:var(–text-2);cursor:pointer;transition:all .14s;letter-spacing:.02em;
+font-family:‘Outfit’,sans-serif;
 }
-.zpill:hover{background:var(--surface-2);color:var(--text);}
+.zpill:hover{background:var(–surface-2);color:var(–text);}
 .zpill.active{
-  background:rgba(52,212,184,.13);
-  border-color:rgba(52,212,184,.38);
-  color:var(--vantage);
+background:rgba(52,212,184,.13);
+border-color:rgba(52,212,184,.38);
+color:var(–vantage);
 }
 .flex-sep{flex:1;}
 .urg-legend{display:flex;gap:14px;align-items:center;}
-.urg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text-3);}
-.urg-swatch{width:22px;height:8px;border-radius:2px;background:var(--text-2);}
-.urg-swatch.flex{background:transparent;border:1.5px dashed var(--text-3);}
+.urg-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(–text-3);}
+.urg-swatch{width:22px;height:8px;border-radius:2px;background:var(–text-2);}
+.urg-swatch.flex{background:transparent;border:1.5px dashed var(–text-3);}
 
 /* GANTT SCROLL CONTAINER */
 .gantt-scroll{
-  flex:1;
-  overflow:auto;
-  position:relative;
+flex:1;
+overflow:auto;
+position:relative;
 }
 .gantt-scroll::-webkit-scrollbar{width:5px;height:5px;}
-.gantt-scroll::-webkit-scrollbar-track{background:var(--bg);}
-.gantt-scroll::-webkit-scrollbar-thumb{background:var(--surface-2);border-radius:3px;}
+.gantt-scroll::-webkit-scrollbar-track{background:var(–bg);}
+.gantt-scroll::-webkit-scrollbar-thumb{background:var(–surface-2);border-radius:3px;}
 
 /* INNER — wide enough for horizontal scroll */
 .gantt-inner{
-  position:relative;
-  /* width set by JS based on zoom level */
+position:relative;
+/* width set by JS based on zoom level */
 }
 
 /* STICKY TIME HEADER */
 .time-header{
-  position:sticky;top:0;z-index:20;
-  background:var(--bg);
-  border-bottom:1px solid var(--border-2);
-  display:flex;
+position:sticky;top:0;z-index:20;
+background:var(–bg);
+border-bottom:1px solid var(–border-2);
+display:flex;
 }
 .th-spacer{
-  width:var(--label-w);min-width:var(--label-w);flex-shrink:0;
-  border-right:1px solid var(--border-2);
+width:var(–label-w);min-width:var(–label-w);flex-shrink:0;
+border-right:1px solid var(–border-2);
 }
 .th-cells{flex:1;display:flex;}
 .th-cell{
-  flex-shrink:0;border-right:1px solid var(--border);
-  padding:9px 0 9px 10px;
+flex-shrink:0;border-right:1px solid var(–border);
+padding:9px 0 9px 10px;
 }
 .th-cell-text{
-  font-family:'JetBrains Mono',monospace;font-size:9px;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);
+font-family:‘JetBrains Mono’,monospace;font-size:9px;
+letter-spacing:.1em;text-transform:uppercase;color:var(–text-3);
 }
-.th-cell.now .th-cell-text{color:var(--today);}
+.th-cell.now .th-cell-text{color:var(–today);}
 
 /* ROWS */
 .rows-area{position:relative;}
@@ -138,35 +140,34 @@ header{
 /* GROUP HEADING */
 .grp-head{display:flex;align-items:center;padding:18px 0 6px;}
 .grp-lbl{
-  width:var(--label-w);min-width:var(--label-w);flex-shrink:0;
-  padding:0 14px 0 28px;
-  font-size:10px;font-weight:700;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--text-3);
+width:var(–label-w);min-width:var(–label-w);flex-shrink:0;
+padding:0 14px 0 28px;
+font-size:10px;font-weight:700;letter-spacing:.13em;
+text-transform:uppercase;color:var(–text-3);
 }
-.grp-rule{flex:1;height:1px;background:var(--border);}
+.grp-rule{flex:1;height:1px;background:var(–border);}
 
 /* TRACK ROW */
 .track-row{
-  display:flex;align-items:center;
-  height:var(--row-h);position:relative;
-  transition:background .12s;
+display:flex;align-items:center;
+height:var(–row-h);position:relative;
+transition:background .12s;
 }
 .track-row:hover{background:rgba(255,255,255,.015);}
-
 .track-lbl{
-  width:var(--label-w);min-width:var(--label-w);flex-shrink:0;
-  padding:0 12px 0 28px;
-  border-right:1px solid var(--border);
-  position:sticky;left:0;z-index:5;
-  background:var(--bg);
+width:var(–label-w);min-width:var(–label-w);flex-shrink:0;
+padding:0 12px 0 28px;
+border-right:1px solid var(–border);
+position:sticky;left:0;z-index:5;
+background:var(–bg);
 }
 .track-name{
-  font-size:13px;font-weight:500;color:var(--text);
-  line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+font-size:13px;font-weight:500;color:var(–text);
+line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .track-sub{
-  font-size:10px;color:var(--text-2);font-weight:300;
-  margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+font-size:10px;color:var(–text-2);font-weight:300;
+margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 
 /* BAR CANVAS */
@@ -174,128 +175,129 @@ header{
 
 /* GRID LINE */
 .gline{
-  position:absolute;top:0;bottom:0;width:1px;
-  background:var(--border);pointer-events:none;z-index:1;
+position:absolute;top:0;bottom:0;width:1px;
+background:var(–border);pointer-events:none;z-index:1;
 }
-.gline.major{background:var(--border-2);}
+.gline.major{background:var(–border-2);}
 
 /* TODAY LINE */
 .today-ln{
-  position:absolute;top:0;bottom:0;width:2px;
-  background:var(--today);
-  box-shadow:0 0 10px rgba(244,63,94,.5);
-  z-index:9;pointer-events:none;
+position:absolute;top:0;bottom:0;width:2px;
+background:var(–today);
+box-shadow:0 0 10px rgba(244,63,94,.5);
+z-index:9;pointer-events:none;
 }
 
 /* BAR */
 .bar{
-  position:absolute;top:50%;transform:translateY(-50%);
-  height:28px;border-radius:5px;
-  display:flex;align-items:center;padding:0 10px;
-  cursor:pointer;z-index:3;overflow:hidden;
-  transition:filter .13s,height .13s;
+position:absolute;top:50%;transform:translateY(-50%);
+height:28px;border-radius:5px;
+display:flex;align-items:center;padding:0 10px;
+cursor:pointer;z-index:3;overflow:hidden;
+transition:filter .13s,height .13s;
 }
 .bar:hover{filter:brightness(1.18);height:33px;}
 .bar.flex-bar{
-  opacity:.62;
-  background-image:repeating-linear-gradient(
-    -55deg,transparent 0,transparent 5px,
-    rgba(0,0,0,.2) 5px,rgba(0,0,0,.2) 10px);
+opacity:.62;
+background-image:repeating-linear-gradient(
+-55deg,transparent 0,transparent 5px,
+rgba(0,0,0,.2) 5px,rgba(0,0,0,.2) 10px);
 }
 .bar-text{
-  font-size:11px;font-weight:600;
-  color:rgba(0,0,0,.72);white-space:nowrap;
-  overflow:hidden;text-overflow:ellipsis;letter-spacing:.01em;
+font-size:11px;font-weight:600;
+color:rgba(0,0,0,.72);white-space:nowrap;
+overflow:hidden;text-overflow:ellipsis;letter-spacing:.01em;
 }
 
 /* EDIT PANEL */
 .edit-panel{
-  position:fixed;top:0;right:-360px;width:340px;height:100vh;
-  background:var(--surface);border-left:1px solid var(--border-2);
-  z-index:100;display:flex;flex-direction:column;
-  transition:right .25s cubic-bezier(.32,0,.67,0);
+position:fixed;top:0;right:-360px;width:340px;height:100vh;
+background:var(–surface);border-left:1px solid var(–border-2);
+z-index:100;display:flex;flex-direction:column;
+transition:right .25s cubic-bezier(.32,0,.67,0);
 }
 .edit-panel.open{
-  right:0;transition:right .25s cubic-bezier(.33,1,.68,1);
+right:0;transition:right .25s cubic-bezier(.33,1,.68,1);
 }
 .ep-hdr{
-  padding:18px 18px 14px;border-bottom:1px solid var(--border-2);
-  display:flex;align-items:center;justify-content:space-between;
+padding:18px 18px 14px;border-bottom:1px solid var(–border-2);
+display:flex;align-items:center;justify-content:space-between;
 }
-.ep-title{font-size:13px;font-weight:600;color:var(--text);}
+.ep-title{font-size:13px;font-weight:600;color:var(–text);}
 .ep-close{
-  width:28px;height:28px;border-radius:6px;
-  border:1px solid var(--border-2);background:transparent;
-  color:var(--text-2);font-size:16px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .12s;font-family:'Outfit',sans-serif;
+width:28px;height:28px;border-radius:6px;
+border:1px solid var(–border-2);background:transparent;
+color:var(–text-2);font-size:16px;cursor:pointer;
+display:flex;align-items:center;justify-content:center;
+transition:all .12s;font-family:‘Outfit’,sans-serif;
 }
-.ep-close:hover{background:var(--surface-2);color:var(--text);}
+.ep-close:hover{background:var(–surface-2);color:var(–text);}
 .ep-body{flex:1;padding:18px;overflow-y:auto;display:flex;flex-direction:column;gap:14px;}
 .fld-grp{display:flex;flex-direction:column;gap:5px;}
 .fld-lbl{
-  font-size:10px;font-weight:600;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--text-3);
+font-size:10px;font-weight:600;letter-spacing:.1em;
+text-transform:uppercase;color:var(–text-3);
 }
 .fld-in{
-  background:var(--surface-2);border:1px solid var(--border-2);
-  border-radius:6px;padding:9px 11px;
-  font-size:13px;font-family:'JetBrains Mono',monospace;
-  color:var(--text);outline:none;width:100%;
-  transition:border-color .12s;
+background:var(–surface-2);border:1px solid var(–border-2);
+border-radius:6px;padding:9px 11px;
+font-size:13px;font-family:‘JetBrains Mono’,monospace;
+color:var(–text);outline:none;width:100%;
+transition:border-color .12s;
 }
-.fld-in:focus{border-color:var(--vantage);}
-select.fld-in{font-family:'Outfit',sans-serif;}
+.fld-in:focus{border-color:var(–vantage);}
+select.fld-in{font-family:‘Outfit’,sans-serif;}
 textarea.fld-in{
-  resize:vertical;min-height:68px;
-  font-family:'Outfit',sans-serif;font-size:12px;line-height:1.55;
+resize:vertical;min-height:68px;
+font-family:‘Outfit’,sans-serif;font-size:12px;line-height:1.55;
 }
-.fld-hint{font-size:11px;color:var(--text-3);line-height:1.5;font-style:italic;}
+.fld-hint{font-size:11px;color:var(–text-3);line-height:1.5;font-style:italic;}
 .ep-foot{
-  padding:14px 18px;border-top:1px solid var(--border-2);
-  display:flex;gap:8px;
+padding:14px 18px;border-top:1px solid var(–border-2);
+display:flex;gap:8px;
 }
 .btn-save{
-  flex:1;background:var(--vantage);color:#071a16;
-  border:none;border-radius:7px;padding:10px;
-  font-size:13px;font-weight:700;cursor:pointer;
-  font-family:'Outfit',sans-serif;transition:filter .12s;
+flex:1;background:var(–vantage);color:#071a16;
+border:none;border-radius:7px;padding:10px;
+font-size:13px;font-weight:700;cursor:pointer;
+font-family:‘Outfit’,sans-serif;transition:filter .12s;
 }
 .btn-save:hover{filter:brightness(1.1);}
 .btn-cancel{
-  background:var(--surface-2);border:1px solid var(--border-2);
-  border-radius:7px;padding:10px 16px;
-  font-size:13px;color:var(--text-2);cursor:pointer;
-  font-family:'Outfit',sans-serif;transition:all .12s;
+background:var(–surface-2);border:1px solid var(–border-2);
+border-radius:7px;padding:10px 16px;
+font-size:13px;color:var(–text-2);cursor:pointer;
+font-family:‘Outfit’,sans-serif;transition:all .12s;
 }
-.btn-cancel:hover{color:var(--text);}
+.btn-cancel:hover{color:var(–text);}
 
 /* TOOLTIP */
 .tip{
-  position:fixed;background:var(--surface-2);
-  border:1px solid var(--border-2);border-radius:9px;
-  padding:12px 15px;pointer-events:none;z-index:200;
-  opacity:0;transition:opacity .12s;max-width:260px;
-  box-shadow:0 8px 32px rgba(0,0,0,.45);
+position:fixed;background:var(–surface-2);
+border:1px solid var(–border-2);border-radius:9px;
+padding:12px 15px;pointer-events:none;z-index:200;
+opacity:0;transition:opacity .12s;max-width:260px;
+box-shadow:0 8px 32px rgba(0,0,0,.45);
 }
 .tip.show{opacity:1;}
 .tip-accent{height:3px;border-radius:2px;margin-bottom:9px;}
-.tip-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px;}
+.tip-name{font-size:13px;font-weight:600;color:var(–text);margin-bottom:3px;}
 .tip-dates{
-  font-family:'JetBrains Mono',monospace;
-  font-size:10px;color:var(--text-2);margin-bottom:5px;
+font-family:‘JetBrains Mono’,monospace;
+font-size:10px;color:var(–text-2);margin-bottom:5px;
 }
-.tip-note{font-size:11px;color:var(--text-2);font-weight:300;line-height:1.55;font-style:italic;}
-.tip-code{font-size:10px;color:var(--text-3);margin-top:5px;font-family:'JetBrains Mono',monospace;}
+.tip-note{font-size:11px;color:var(–text-2);font-weight:300;line-height:1.55;font-style:italic;}
+.tip-code{font-size:10px;color:var(–text-3);margin-top:5px;font-family:‘JetBrains Mono’,monospace;}
 
 /* FOOTER */
 footer{
-  padding:10px 28px;border-top:1px solid var(--border);
-  display:flex;align-items:center;gap:16px;
-  font-size:11px;color:var(--text-3);flex-shrink:0;
+padding:10px 28px;border-top:1px solid var(–border);
+display:flex;align-items:center;gap:16px;
+font-size:11px;color:var(–text-3);flex-shrink:0;
 }
-.click-hint{color:var(--vantage);opacity:.7;font-style:italic;}
+.click-hint{color:var(–vantage);opacity:.7;font-style:italic;}
 </style>
+
 </head>
 <body>
 
@@ -327,6 +329,7 @@ footer{
 </footer>
 
 <!-- Edit Panel -->
+
 <div class="edit-panel" id="edit-panel">
   <div class="ep-hdr">
     <div class="ep-title" id="ep-title">Edit Item</div>
@@ -379,55 +382,63 @@ footer{
 <script>
 // ═══════════════════════════════════════════════
 // DATA
-// Natural-language bar labels. Course codes in
-// 'code' field — shown in tooltip & sidebar only.
 // ═══════════════════════════════════════════════
+
 const GROUPS = [
+
   {
-    id:'school', label:'School — April SP',
+    id:'school', label:'School — April SP (Apr 7 – Jun 26)',
     items:[
-      { id:'bama',  label:'Business Analytics Foundations',  code:'BAMA 300X',
-        meta:'Unlock-critical · finish first',
-        start:'2026-04-07', end:'2026-04-21',
+      { id:'bama', label:'Business Analytics Foundations', code:'BAMA 300X',
+        meta:'Unlock-critical · Module 1 ✓ · effective start Apr 13',
+        start:'2026-04-13', end:'2026-05-09',
         color:'#a78bfa', flex:false,
-        note:'Unlocks BABA 300X/302X/304X for July SP. Contact advisor the day it clears.' },
-      { id:'baef1', label:'Business Ethics',                  code:'BAEF 201X',
+        note:'Module 1 complete (Probability pre-assessment + assessment done). Unlocks BABA 300X/302X/304X for July SP. Contact advisor the day it clears. Target completion: May 9.' },
+
+      { id:'baef1', label:'Business Ethics', code:'BAEF 201X',
         meta:'1 credit · light sprint',
-        start:'2026-04-07', end:'2026-04-21',
+        start:'2026-04-13', end:'2026-04-27',
         color:'#94a3b8', flex:false,
         note:'Run alongside BAMA 300X in weeks 1–2. Low cognitive load.' },
-      { id:'mus',   label:'Music Appreciation',               code:'MUS 273X',
+
+      { id:'mus', label:'Music Appreciation', code:'MUS 273X',
         meta:'Carry-in · listening + writing',
-        start:'2026-04-14', end:'2026-05-12',
+        start:'2026-04-13', end:'2026-05-12',
         color:'#60a5fa', flex:false,
         note:'Second attempt. Never skip a full week or it stacks up. Pressure valve.' },
-      { id:'baef2', label:'Financial Accounting',             code:'BAEF 302X',
-        meta:'Ratio project',
+
+      { id:'baef2', label:'Financial Ratio Analysis', code:'BAEF 302X',
+        meta:'Ratio project · 1 cr',
         start:'2026-04-21', end:'2026-05-05',
         color:'#94a3b8', flex:true,
         note:'Breather course. Slot between BAMA finishing and BALM starting.' },
-      { id:'pmgt',  label:'Project Management Foundations',   code:'PMGT 315X',
+
+      { id:'pmgt', label:'Project Management Foundations', code:'PMGT 315X',
         meta:'Conceptual · light',
         start:'2026-04-28', end:'2026-05-12',
         color:'#94a3b8', flex:true,
         note:'Conceptual intro. No anchors, no prereqs. Use as a breather.' },
-      { id:'bams',  label:'Marketing Strategy',               code:'BAMS 301X',
+
+      { id:'bams', label:'Marketing Strategy', code:'BAMS 301X',
         meta:'Marketing plan + presentation',
         start:'2026-05-05', end:'2026-06-02',
         color:'#f7c948', flex:false,
-        note:'Get done before BALM absorbs writing bandwidth in the back half.' },
-      { id:'balm',  label:'Organizational Behavior',          code:'BALM 310X',
+        note:'Get done before BALM absorbs writing bandwidth in the back half. Consider using Vantage Strategic Communications as your subject.' },
+
+      { id:'balm', label:'Organizational Behavior', code:'BALM 310X',
         meta:'Anchor · writing-intensive · 4 cr',
         start:'2026-05-19', end:'2026-06-25',
         color:'#f472b6', flex:false,
         note:'Writing-heavy anchor. OB + leadership theory. Never stack against Business Analytics on same day.' },
-      { id:'baba1', label:'Business Analytics',               code:'BABA 301X',
+
+      { id:'baba1', label:'Business Analytics', code:'BABA 301X',
         meta:'Anchor · Tableau · 3 areas',
         start:'2026-06-02', end:'2026-06-25',
         color:'#f472b6', flex:false,
-        note:'Software-heavy. Needs focused sessions. Never same-day as Org Behavior.' },
+        note:'Software-heavy. Needs focused sessions. Never same-day as Org Behavior. Starts after BAMA 300X clears.' },
     ]
   },
+
   {
     id:'vantage', label:'Vantage Strategic Communications',
     items:[
@@ -436,16 +447,19 @@ const GROUPS = [
         start:'2026-04-13', end:'2026-07-11',
         color:'#34d4b8', flex:false,
         note:'First paid revenue target mid-2026. LinkedIn content pipeline active through end of April.' },
+
       { id:'website', label:'Website Launch', code:'',
         meta:'Landing · About · Contact',
         start:'2026-04-13', end:'2026-04-30',
         color:'#34d4b8', flex:false,
         note:'Portfolio added after first paid engagement closes.' },
+
       { id:'jonathan', label:'Jonathan / Bridge Geometric', code:'',
         meta:'Pro bono · Gate 2',
         start:'2026-03-01', end:'2026-05-15',
         color:'#34d4b8', flex:true,
         note:'Awaiting client-side approval. Gate 3 begins after approval.' },
+
       { id:'derek', label:'Derek (Photographer)', code:'',
         meta:'Sequenced after Jonathan closes',
         start:'2026-05-20', end:'2026-07-31',
@@ -453,6 +467,7 @@ const GROUPS = [
         note:'Begins only after Jonathan engagement closes. Do not start early.' },
     ]
   },
+
   {
     id:'app', label:'App Development',
     items:[
@@ -463,6 +478,7 @@ const GROUPS = [
         note:'S2/S3 blocked on Apple Dev account + LLC filing. S6 (Phase 0 review) is next step.' },
     ]
   },
+
   {
     id:'va', label:'VA Claim',
     items:[
@@ -473,6 +489,7 @@ const GROUPS = [
         note:'Buddy statements, nexus letters, and cover notes staged. Witness network ready to move.' },
     ]
   },
+
   {
     id:'personal', label:'Personal',
     items:[
@@ -483,48 +500,41 @@ const GROUPS = [
         note:'Non-negotiable. No client work, no school, no dev during this window.' },
     ]
   },
+
 ];
 
 // ═══════════════════════════════════════════════
-// ZOOM — the window is always 91 days (3 months).
-// pxPerDay controls how many pixels each day gets.
-// At 1 Week zoom you scroll to see the full window.
-// At 3 Month zoom everything fits on screen.
+// ZOOM
 // ═══════════════════════════════════════════════
-const WINDOW_DAYS = 91;  // always 3 months, never changes
-const LEAD_DAYS   = 11;  // days before today shown on left
 
+const WINDOW_DAYS = 91;
+const LEAD_DAYS = 11;
 const ZOOMS = [
-  { label:'1 Week',  unit:'day',  pxPerDay:120 },
-  { label:'2 Weeks', unit:'day',  pxPerDay:60  },
-  { label:'1 Month', unit:'week', pxPerDay:28  },
-  { label:'3 Months',unit:'week', pxPerDay:11  },
+  { label:'1 Week',   unit:'day',  pxPerDay:120 },
+  { label:'2 Weeks',  unit:'day',  pxPerDay:60  },
+  { label:'1 Month',  unit:'week', pxPerDay:28  },
+  { label:'3 Months', unit:'week', pxPerDay:11  },
 ];
 let zoomIdx = 3;
 
 // ═══════════════════════════════════════════════
 // HELPERS
 // ═══════════════════════════════════════════════
-const TODAY = new Date(); TODAY.setHours(0,0,0,0);
 
+const TODAY = new Date(); TODAY.setHours(0,0,0,0);
 function pd(s){ const[y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); }
 function fd(d){ return d.toLocaleDateString('en-US',{month:'short',day:'numeric'}); }
 function dayDiff(a,b){ return Math.round((b-a)/86400000); }
-
-// Convert a date to canvas pixels from the left of the bar area
 function dateToPx(date, vs, pxPerDay){ return dayDiff(vs, date) * pxPerDay; }
 
 function getViewBounds(){
-  // Window is always WINDOW_DAYS wide, anchored LEAD_DAYS before today on the left.
-  // pxPerDay scales the canvas width — the visible window never changes, you just scroll more.
   const z = ZOOMS[zoomIdx];
   const vs = new Date(TODAY); vs.setDate(vs.getDate() - LEAD_DAYS);
-  const ve = new Date(vs);    ve.setDate(ve.getDate() + WINDOW_DAYS);
+  const ve = new Date(vs); ve.setDate(ve.getDate() + WINDOW_DAYS);
   const canvasPx = WINDOW_DAYS * z.pxPerDay;
   return { vs, ve, total:WINDOW_DAYS, canvasPx, pxPerDay:z.pxPerDay };
 }
 
-// Generate tick starts for header
 function getTicks(vs, ve, unit){
   const ticks=[];
   let c = new Date(vs);
@@ -534,67 +544,58 @@ function getTicks(vs, ve, unit){
   while(c <= ve){
     ticks.push(new Date(c));
     if(unit==='week') c.setDate(c.getDate()+7);
-    else              c.setDate(c.getDate()+1);
+    else c.setDate(c.getDate()+1);
   }
   return ticks;
 }
 
 // ═══════════════════════════════════════════════
-// RENDER — pixel-based layout
-// gantt-inner gets an explicit pixel width so the
-// gantt-scroll container can overflow-x scroll it.
-// All bar/grid positions are in px, not %.
+// RENDER
 // ═══════════════════════════════════════════════
+
 function render(){
   const gantt = document.getElementById('gantt');
   gantt.innerHTML='';
   const {vs, ve, canvasPx, pxPerDay} = getViewBounds();
   const z = ZOOMS[zoomIdx];
   const ticks = getTicks(vs, ve, z.unit);
-  const LABEL_W = 230; // must match CSS --label-w
+  const LABEL_W = 230;
 
-  // Set gantt-inner total width: label col + canvas
   gantt.style.width = (LABEL_W + canvasPx) + 'px';
 
-  // ── Time Header (pixel widths)
+  // Time Header
   const thdr = document.createElement('div'); thdr.className='time-header';
   const spacer = document.createElement('div'); spacer.className='th-spacer';
   thdr.appendChild(spacer);
   const thCells = document.createElement('div'); thCells.className='th-cells';
-  // give th-cells explicit width so it doesn't collapse
   thCells.style.width = canvasPx + 'px';
   thCells.style.flexShrink = '0';
 
   ticks.forEach((t,i)=>{
     const next = ticks[i+1] || ve;
     const cStart = t < vs ? vs : t;
-    const cEnd   = next > ve ? ve : next;
+    const cEnd = next > ve ? ve : next;
     const cellPx = dayDiff(cStart, cEnd) * pxPerDay;
     if(cellPx <= 0) return;
-
     const isNow = z.unit==='week'
       ? TODAY>=t && TODAY<next
       : dayDiff(t,TODAY)===0;
-
     const cell = document.createElement('div');
     cell.className='th-cell'+(isNow?' now':'');
     cell.style.width = cellPx + 'px';
     cell.style.flexShrink = '0';
-
     let lbl;
     if(z.unit==='week')
       lbl=t.toLocaleDateString('en-US',{month:'short',day:'numeric'});
     else
       lbl=t.toLocaleDateString('en-US',{weekday:'short',month:'numeric',day:'numeric'});
-
     cell.innerHTML=`<div class="th-cell-text">${lbl}</div>`;
     thCells.appendChild(cell);
   });
-
   thdr.appendChild(thCells);
   gantt.appendChild(thdr);
 
-  // ── Rows area
+  // Rows
   const rowsArea = document.createElement('div'); rowsArea.className='rows-area';
 
   GROUPS.forEach(g=>{
@@ -605,19 +606,16 @@ function render(){
     g.items.forEach(item=>{
       const row = document.createElement('div'); row.className='track-row';
 
-      // Label cell (sticky left — CSS handles it)
       const lc = document.createElement('div'); lc.className='track-lbl';
       lc.innerHTML=`<div class="track-name">${item.label}</div><div class="track-sub">${item.meta}</div>`;
       row.appendChild(lc);
 
-      // Bar canvas — explicit px width, no flex expansion
       const bc = document.createElement('div');
       bc.className='bar-canvas';
       bc.style.width = canvasPx + 'px';
       bc.style.flexShrink = '0';
       bc.style.position = 'relative';
 
-      // Grid lines (px positions)
       ticks.forEach(t=>{
         const px = dateToPx(t, vs, pxPerDay);
         if(px < 0 || px > canvasPx) return;
@@ -627,7 +625,6 @@ function render(){
         bc.appendChild(gl);
       });
 
-      // Today line (px)
       const todayPx = dateToPx(TODAY, vs, pxPerDay);
       if(todayPx >= 0 && todayPx <= canvasPx){
         const tl=document.createElement('div');
@@ -636,11 +633,9 @@ function render(){
         bc.appendChild(tl);
       }
 
-      // Bar (px)
       const iStart=pd(item.start), iEnd=pd(item.end);
       let lp = dateToPx(iStart, vs, pxPerDay);
-      let rp = dateToPx(iEnd,   vs, pxPerDay);
-      // clamp to canvas
+      let rp = dateToPx(iEnd, vs, pxPerDay);
       if(lp < 0) lp = 0;
       if(rp > canvasPx) rp = canvasPx;
       const wp = rp - lp;
@@ -666,12 +661,10 @@ function render(){
 
   gantt.appendChild(rowsArea);
 
-  // Sync zoom pills
   document.querySelectorAll('.zpill').forEach((p,i)=>{
     p.classList.toggle('active',i===zoomIdx);
   });
 
-  // Scroll so today is near the left edge (LEAD_DAYS worth of pixels from left)
   const scrollTarget = Math.max(0, dateToPx(TODAY, vs, pxPerDay) - LEAD_DAYS * pxPerDay);
   document.getElementById('gantt-scroll').scrollLeft = scrollTarget;
 }
@@ -679,6 +672,7 @@ function render(){
 // ═══════════════════════════════════════════════
 // TOOLTIP
 // ═══════════════════════════════════════════════
+
 const tip=document.getElementById('tip');
 function showTip(e,item){
   document.getElementById('tip-accent').style.background=item.color;
@@ -698,8 +692,10 @@ function hideTip(){ tip.classList.remove('show'); }
 // ═══════════════════════════════════════════════
 // EDIT PANEL
 // ═══════════════════════════════════════════════
+
 let editItem=null;
 const ep=document.getElementById('edit-panel');
+
 function openEdit(item){
   hideTip(); editItem=item;
   document.getElementById('ep-title').textContent=item.label;
@@ -731,15 +727,16 @@ document.getElementById('ep-save').addEventListener('click',()=>{
 // ═══════════════════════════════════════════════
 // LEGEND + ZOOM PILLS
 // ═══════════════════════════════════════════════
+
 const LEGEND_ITEMS=[
-  {label:'Vantage',          color:'#34d4b8'},
-  {label:'School — anchor',  color:'#f472b6'},
-  {label:'School — unlock',  color:'#a78bfa'},
-  {label:'School — carry-in',color:'#60a5fa'},
-  {label:'School — support', color:'#94a3b8'},
-  {label:'App Dev',          color:'#fb923c'},
-  {label:'VA Claim',         color:'#c084fc'},
-  {label:'Personal',         color:'#4ade80'},
+  {label:'Vantage',           color:'#34d4b8'},
+  {label:'School — anchor',   color:'#f472b6'},
+  {label:'School — unlock',   color:'#a78bfa'},
+  {label:'School — carry-in', color:'#60a5fa'},
+  {label:'School — support',  color:'#94a3b8'},
+  {label:'App Dev',           color:'#fb923c'},
+  {label:'VA Claim',          color:'#c084fc'},
+  {label:'Personal',          color:'#4ade80'},
 ];
 
 function buildLegend(){
@@ -765,13 +762,16 @@ function buildZoom(){
 // ═══════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════
+
 document.getElementById('hdr-date').textContent=
   '▍ '+TODAY.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}).toUpperCase();
 document.getElementById('last-upd').textContent=
   TODAY.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+
 buildLegend();
 buildZoom();
 render();
 </script>
+
 </body>
 </html>
