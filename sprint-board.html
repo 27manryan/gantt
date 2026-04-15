@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sprint Board — APR SP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F6F3;
+    --surface: #FFFFFF;
+    --border: #E0DDD8;
+    --border-dark: #C8C4BC;
+    --text: #1A1916;
+    --text-mid: #5A574F;
+    --text-dim: #9A9790;
+    --accent: #2563EB;
+    --accent-light: #EFF6FF;
+    --amber: #B45309;
+    --amber-light: #FEF3C7;
+    --green: #15803D;
+    --green-light: #F0FDF4;
+    --red: #B91C1C;
+    --red-light: #FEF2F2;
+    --purple: #6D28D9;
+    --purple-light: #F5F3FF;
+    --s1: #2563EB;
+    --s2: #7C3AED;
+    --s3: #0F766E;
+    --s4: #B45309;
+    --s5: #BE185D;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* HEADER */
+  .header {
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--border-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .header-left h1 {
+    font-family: var(--sans);
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+
+  .header-left .subtitle {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .header-right {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .header-stat {
+    text-align: right;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .stat-val {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  /* CONSTRAINTS BAR */
+  .constraints {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+
+  .constraint-pill {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 4px 10px;
+    border: 1px solid var(--border-dark);
+    color: var(--text-mid);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .constraint-pill.warn {
+    border-color: var(--amber);
+    color: var(--amber);
+    background: var(--amber-light);
+  }
+
+  .constraint-pill .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  /* SPRINT SECTION */
+  .sprint-section {
+    margin-bottom: 36px;
+  }
+
+  .sprint-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--s1);
+  }
+
+  .sprint-header.s2 { border-left-color: var(--s2); }
+  .sprint-header.s3 { border-left-color: var(--s3); }
+  .sprint-header.s4 { border-left-color: var(--s4); }
+  .sprint-header.s5 { border-left-color: var(--s5); }
+
+  .sprint-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--s1);
+    width: 70px;
+    flex-shrink: 0;
+  }
+
+  .sprint-header.s2 .sprint-num { color: var(--s2); }
+  .sprint-header.s3 .sprint-num { color: var(--s3); }
+  .sprint-header.s4 .sprint-num { color: var(--s4); }
+  .sprint-header.s5 .sprint-num { color: var(--s5); }
+
+  .sprint-dates {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    flex: 0 0 auto;
+  }
+
+  .sprint-goal {
+    font-size: 12px;
+    color: var(--text-mid);
+    flex: 1;
+    padding-left: 12px;
+    border-left: 1px solid var(--border);
+  }
+
+  /* DAY ROWS */
+  .day-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .day-row:last-child { border-bottom: none; }
+  .day-row:hover { background: #FAFAF8; }
+
+  .day-label {
+    padding: 10px 14px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .day-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.02em;
+  }
+
+  .day-date {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  .day-blocks {
+    padding: 8px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .block {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 5px 8px;
+    border-left: 3px solid var(--border-dark);
+  }
+
+  .block.b1 { border-left-color: #2563EB; background: #F8FAFF; }
+  .block.b2 { border-left-color: #7C3AED; background: #FAF8FF; }
+  .block.bama { border-left-color: #0F766E; background: #F0FDFB; }
+  .block.mus { border-left-color: #B45309; background: #FFFBF0; }
+  .block.baef { border-left-color: #BE185D; background: #FFF0F8; }
+  .block.pmgt { border-left-color: #7C3AED; background: #FAF8FF; }
+  .block.bams { border-left-color: #0369A1; background: #F0F8FF; }
+  .block.baba { border-left-color: #15803D; background: #F0FDF4; }
+  .block.balm { border-left-color: #9A3412; background: #FFF8F0; }
+  .block.buffer { border-left-color: var(--border-dark); background: var(--bg); }
+  .block.warn { border-left-color: var(--amber); background: var(--amber-light); }
+  .block.milestone { border-left-color: var(--green); background: var(--green-light); }
+  .block.limited { border-left-color: var(--red); background: var(--red-light); }
+
+  .block-tag {
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    flex-shrink: 0;
+    width: 54px;
+    padding-top: 1px;
+  }
+
+  .block-text {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.45;
+    flex: 1;
+  }
+
+  .block-text strong {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .block-text .note {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* MILESTONE BADGES */
+  .milestone-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    padding: 2px 7px;
+    border: 1px solid var(--green);
+    color: var(--green);
+    background: var(--green-light);
+    white-space: nowrap;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  .warn-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    padding: 2px 7px;
+    border: 1px solid var(--amber);
+    color: var(--amber);
+    background: var(--amber-light);
+    white-space: nowrap;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+
+  /* DIVIDERS */
+  .week-divider {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-bottom: none;
+  }
+
+  /* SP COMPLETE */
+  .sp-complete {
+    margin-top: 32px;
+    padding: 20px 24px;
+    background: var(--green-light);
+    border: 1px solid var(--green);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .sp-complete-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .sp-complete-detail {
+    font-size: 12px;
+    color: var(--text-mid);
+  }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-bottom: 28px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    color: var(--text-mid);
+  }
+
+  .legend-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-dim);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Sprint Board — APR SP</h1>
+      <div class="subtitle">8 COURSES · 16 CREDITS · SP CLOSES JUN 26, 2026</div>
+    </div>
+    <div class="header-right">
+      <div class="header-stat">
+        <span class="stat-label">SP Opens</span>
+        <span class="stat-val">Apr 7, 2026</span>
+      </div>
+      <div class="header-stat">
+        <span class="stat-label">SP Closes</span>
+        <span class="stat-val">Jun 26, 2026</span>
+      </div>
+      <div class="header-stat">
+        <span class="stat-label">BAMA 300X Target</span>
+        <span class="stat-val">May 9, 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HARD CONSTRAINTS -->
+  <div class="constraints">
+    <div class="constraint-pill warn"><div class="dot"></div> Apr 17: Limited availability</div>
+    <div class="constraint-pill warn"><div class="dot"></div> May 9: BAMA 300X target → advisor contact trigger</div>
+    <div class="constraint-pill warn"><div class="dot"></div> Jun 19: Latest MUS 273X paper submissions</div>
+    <div class="constraint-pill warn"><div class="dot"></div> Jun 26: SP end date — nothing open</div>
+    <div class="constraint-pill"><div class="dot"></div> Apr 7–11: Family trip</div>
+  </div>
+
+  <!-- COURSE LEGEND -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-swatch" style="background:#0F766E"></div> BAMA 300X</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#B45309"></div> MUS 273X</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#BE185D"></div> BAEF 201X</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#7C3AED"></div> BAEF 302X / PMGT 315X</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#0369A1"></div> BAMS 301X</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#15803D"></div> BABA 301X</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#9A3412"></div> BALM 310X</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#E5E3DF;border:1px solid #C8C4BC"></div> Buffer</div>
+    <div class="legend-item"><div class="legend-swatch" style="background:#FEF3C7;border:1px solid #B45309"></div> Milestone / Warning</div>
+  </div>
+
+  <!-- ==================== SPRINT 1 ==================== -->
+  <div class="sprint-section">
+    <div class="sprint-header s1">
+      <div class="sprint-num">SPRINT 1</div>
+      <div class="sprint-dates">Apr 13 – Apr 25</div>
+      <div class="sprint-goal">BAMA 300X done by Apr 25 &nbsp;·&nbsp; MUS 273X Modules 3–6 done by Apr 25 &nbsp;·&nbsp; MUS 273X papers sourced</div>
+    </div>
+
+    <div class="week-divider">Week of Apr 13</div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">MON</div><div class="day-date">Apr 14</div></div>
+      <div class="day-blocks">
+        <div class="block bama"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAMA 300X</strong> — Pre-Assessment: Normal Distribution / Sampling / Confidence Intervals → Assessment: same</div></div>
+        <div class="block mus"><div class="block-tag">Block 2</div><div class="block-text"><strong>MUS 273X</strong> — Module 3 (Early Jazz assessment)</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">TUE</div><div class="day-date">Apr 15</div></div>
+      <div class="day-blocks">
+        <div class="block bama"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAMA 300X</strong> — Quiz: Probability, Distributions, Confidence Intervals <span class="note">75 min · 8 problems</span></div></div>
+        <div class="block mus"><div class="block-tag">Block 2</div><div class="block-text"><strong>MUS 273X</strong> — Module 4 (Swing/Bebop assessment)</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">WED</div><div class="day-date">Apr 16</div></div>
+      <div class="day-blocks">
+        <div class="block bama"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAMA 300X</strong> — Pre-Assessment: Hypothesis Testing → Assessment: Hypothesis Testing for Population Means</div></div>
+        <div class="block mus"><div class="block-tag">Block 2</div><div class="block-text"><strong>MUS 273X</strong> — Module 6 (Cool Jazz/Free Jazz assessment)</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">THU</div><div class="day-date">Apr 17</div></div>
+      <div class="day-blocks">
+        <div class="block limited"><div class="block-tag">⚠ LIMITED</div><div class="block-text"><strong>Block 1 only if possible:</strong> BAMA 300X — Pre-Assessment: Chi-Square Tests</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">FRI</div><div class="day-date">Apr 18</div></div>
+      <div class="day-blocks">
+        <div class="block bama"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAMA 300X</strong> — Assessment: Chi-Square Tests</div></div>
+        <div class="block bama"><div class="block-tag">Block 2</div><div class="block-text"><strong>BAMA 300X</strong> — Quiz: Hypothesis Testing + Chi-Square <span class="note">75 min · 6 problems</span></div></div>
+      </div>
+    </div>
+
+    <div class="week-divider">Week of Apr 21</div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">MON</div><div class="day-date">Apr 21</div></div>
+      <div class="day-blocks">
+        <div class="block bama"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAMA 300X</strong> — Project: US Stock Markets (select stocks, set up Excel, pull data)</div></div>
+        <div class="block mus"><div class="block-tag">Block 2</div><div class="block-text"><strong>MUS 273X</strong> — Module 7 (Fusion/Present assessment)</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">TUE</div><div class="day-date">Apr 22</div></div>
+      <div class="day-blocks">
+        <div class="block bama"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAMA 300X</strong> — Project continued (calculations + statistical tests)</div></div>
+        <div class="block mus"><div class="block-tag">Block 2</div><div class="block-text"><strong>MUS 273X</strong> — Module 8 Discussion (Compare &amp; Contrast) <span class="note">→ MUS 273X listening assessments ALL DONE after this day</span></div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">WED</div><div class="day-date">Apr 23</div></div>
+      <div class="day-blocks">
+        <div class="block bama"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAMA 300X</strong> — Project: write report sections</div></div>
+        <div class="block baef"><div class="block-tag">Block 2</div><div class="block-text"><strong>BAEF 201X</strong> — Ethical Considerations in Accounting</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">THU</div><div class="day-date">Apr 24</div></div>
+      <div class="day-blocks">
+        <div class="block bama"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAMA 300X</strong> — Project: finalize + submit</div></div>
+        <div class="block baef"><div class="block-tag">Block 2</div><div class="block-text"><strong>BAEF 201X</strong> — Bank Reconciliation + Application of Internal Controls</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">FRI</div><div class="day-date">Apr 25</div></div>
+      <div class="day-blocks">
+        <div class="block buffer"><div class="block-tag">Block 1</div><div class="block-text">Buffer / BAMA 300X resubmit if needed</div></div>
+        <div class="block b2"><div class="block-tag">Block 2</div><div class="block-text"><strong>BAEF 302X</strong> — J&amp;J Performance Evaluation + Financial Calculators Paper</div></div>
+        <div class="block warn"><div class="block-tag">⚠ Today</div><div class="block-text">Pick your jazz concert video (YouTube/PBS) — 15 minutes, just decide and save the link.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SPRINT 2 ==================== -->
+  <div class="sprint-section">
+    <div class="sprint-header s2">
+      <div class="sprint-num">SPRINT 2</div>
+      <div class="sprint-dates">Apr 28 – May 9</div>
+      <div class="sprint-goal">BAMA 300X closed by May 2 &nbsp;·&nbsp; MUS 273X fully complete by May 9 &nbsp;·&nbsp; BAEF 201X / 302X &amp; PMGT 315X closed</div>
+    </div>
+
+    <div class="week-divider">Week of Apr 28</div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">MON</div><div class="day-date">Apr 28</div></div>
+      <div class="day-blocks">
+        <div class="block baef"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAEF 201X</strong> — Project (Weeks 3–4 content, fraud triangle case study — write + submit)</div></div>
+        <div class="block b2"><div class="block-tag">Block 2</div><div class="block-text"><strong>BAEF 302X</strong> — Analyzing Personal Finances + Business Valuation Approaches</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">TUE</div><div class="day-date">Apr 29</div></div>
+      <div class="day-blocks">
+        <div class="block b2"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAEF 302X</strong> — Valuation of a Firm Project</div></div>
+        <div class="block pmgt"><div class="block-tag">Block 2</div><div class="block-text"><strong>PMGT 315X</strong> — read all content + complete assessment(s) <span class="note">→ BAEF 201X, BAEF 302X, PMGT 315X CLOSED</span></div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">WED</div><div class="day-date">Apr 30</div></div>
+      <div class="day-blocks">
+        <div class="block mus"><div class="block-tag">Block 1</div><div class="block-text"><strong>MUS 273X</strong> — Module 5: watch selected jazz performance video, take notes while watching <span class="note">~1.5 hrs</span></div></div>
+        <div class="block mus"><div class="block-tag">Block 2</div><div class="block-text"><strong>MUS 273X</strong> — write concert essay (2 pages, double-spaced) → submit</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">THU</div><div class="day-date">May 1</div></div>
+      <div class="day-blocks">
+        <div class="block mus"><div class="block-tag">Block 1</div><div class="block-text"><strong>MUS 273X</strong> — research paper: outline + gather sources <span class="note">3+ written sources, NOT textbook, NOT Wikipedia — Google Scholar / UWM library</span></div></div>
+        <div class="block mus"><div class="block-tag">Block 2</div><div class="block-text"><strong>MUS 273X</strong> — research paper: draft body paragraphs</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">FRI</div><div class="day-date">May 2</div></div>
+      <div class="day-blocks">
+        <div class="block mus"><div class="block-tag">Block 1</div><div class="block-text"><strong>MUS 273X</strong> — research paper: finalize + submit <span class="note">5 pages double-spaced · Black ethnic struggles + jazz history connection</span></div></div>
+        <div class="block buffer"><div class="block-tag">Block 2</div><div class="block-text">Buffer / any resubmissions</div></div>
+        <div class="block milestone"><div class="block-tag">🎓</div><div class="block-text"><strong>MUS 273X CLOSED</strong></div></div>
+      </div>
+    </div>
+
+    <div class="week-divider">Week of May 5</div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">MON</div><div class="day-date">May 5</div></div>
+      <div class="day-blocks">
+        <div class="block bama"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAMA 300X</strong> — confirm grade / resubmit if needed</div></div>
+        <div class="block bams"><div class="block-tag">Block 2</div><div class="block-text"><strong>BAMS 301X</strong> — begin content modules</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">TUE–THU</div><div class="day-date">May 6–8</div></div>
+      <div class="day-blocks">
+        <div class="block bams"><div class="block-tag">Blk 1/2</div><div class="block-text"><strong>BAMS 301X</strong> — content modules continued</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">THU</div><div class="day-date">May 8</div></div>
+      <div class="day-blocks">
+        <div class="block bams"><div class="block-tag">Blk 1/2</div><div class="block-text"><strong>BAMS 301X</strong> — draft written marketing plan</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">FRI</div><div class="day-date">May 9</div></div>
+      <div class="day-blocks">
+        <div class="block bams"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAMS 301X</strong> — finalize + submit written marketing plan</div></div>
+        <div class="block milestone"><div class="block-tag">⚑ Target</div><div class="block-text"><strong>BAMA 300X CONFIRMED COMPLETE</strong> → Contact advisor → Enroll in BABA 300X, 302X, 304X for July SP mid-SP</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SPRINT 3 ==================== -->
+  <div class="sprint-section">
+    <div class="sprint-header s3">
+      <div class="sprint-num">SPRINT 3</div>
+      <div class="sprint-dates">May 12 – May 23</div>
+      <div class="sprint-goal">BAMS 301X done by May 16 &nbsp;·&nbsp; BABA 301X Modules 1–4 banked by May 23</div>
+    </div>
+
+    <div class="week-divider">Week of May 12</div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">MON</div><div class="day-date">May 12</div></div>
+      <div class="day-blocks">
+        <div class="block bams"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAMS 301X</strong> — record and submit presentation</div></div>
+        <div class="block baba"><div class="block-tag">Block 2</div><div class="block-text"><strong>BABA 301X</strong> — Modules 1 &amp; 2 (install Tableau, preliminary graphs, basic visualizations guided)</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">TUE</div><div class="day-date">May 13</div></div>
+      <div class="day-blocks">
+        <div class="block baba"><div class="block-tag">Block 1</div><div class="block-text"><strong>BABA 301X</strong> — Module 2 assessment: Basic Visualizations</div></div>
+        <div class="block baba"><div class="block-tag">Block 2</div><div class="block-text"><strong>BABA 301X</strong> — Module 3 guided + assessment: Beyond Basic Visualizations</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">WED</div><div class="day-date">May 14</div></div>
+      <div class="day-blocks">
+        <div class="block bams"><div class="block-tag">Block 1</div><div class="block-text"><strong>BAMS 301X</strong> — resubmit if needed OR confirmed done</div></div>
+        <div class="block milestone"><div class="block-tag">🎓</div><div class="block-text"><strong>BAMS 301X CLOSED</strong></div></div>
+        <div class="block baba"><div class="block-tag">Block 2</div><div class="block-text"><strong>BABA 301X</strong> — Module 4 guided + assessment: Calculations and Parameters</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">THU</div><div class="day-date">May 15</div></div>
+      <div class="day-blocks">
+        <div class="block baba"><div class="block-tag">Block 1</div><div class="block-text"><strong>BABA 301X</strong> — Module 5 guided + assessment: Level of Detail Calculations</div></div>
+        <div class="block baba"><div class="block-tag">Block 2</div><div class="block-text"><strong>BABA 301X</strong> — Module 6 guided + assessment: Table Calculations</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">FRI</div><div class="day-date">May 16</div></div>
+      <div class="day-blocks">
+        <div class="block baba"><div class="block-tag">Block 1</div><div class="block-text"><strong>BABA 301X</strong> — Module 7 guided + assessment: Making Great Visualizations / Data Story with Dashboards</div></div>
+        <div class="block buffer"><div class="block-tag">Block 2</div><div class="block-text">Buffer / catch-up</div></div>
+      </div>
+    </div>
+
+    <div class="week-divider">Week of May 19</div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">MON–FRI</div><div class="day-date">May 19–23</div></div>
+      <div class="day-blocks">
+        <div class="block baba"><div class="block-tag">Block 1</div><div class="block-text"><strong>BABA 301X</strong> — Modules 8 &amp; 9 (Creating Dashboards, Forecasting with Tableau)</div></div>
+        <div class="block baba"><div class="block-tag">Block 2</div><div class="block-text"><strong>BABA 301X</strong> — Modules 10 &amp; 11 (Dynamic Dashboards, Creating Maps)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SPRINT 4 ==================== -->
+  <div class="sprint-section">
+    <div class="sprint-header s4">
+      <div class="sprint-num">SPRINT 4</div>
+      <div class="sprint-dates">May 26 – Jun 13</div>
+      <div class="sprint-goal">BABA 301X done by Jun 6 &nbsp;·&nbsp; BALM 310X Assessments 1–3 complete by Jun 13 &nbsp;·&nbsp; NEVER work both on same day</div>
+    </div>
+
+    <div class="week-divider">Week of May 26</div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">M/W/F</div><div class="day-date">May 26 wk</div></div>
+      <div class="day-blocks">
+        <div class="block baba"><div class="block-tag">Block 1</div><div class="block-text"><strong>BABA 301X</strong> — Module 12 (Tableau Joins, Blends, Messy Data) + final assessment: Messy Data and Visualization Techniques</div></div>
+        <div class="block milestone"><div class="block-tag">🎓</div><div class="block-text"><strong>BABA 301X CLOSED</strong> — by end of week</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">T/TH</div><div class="day-date">May 26 wk</div></div>
+      <div class="day-blocks">
+        <div class="block balm"><div class="block-tag">Block 1</div><div class="block-text"><strong>BALM 310X</strong> — begin Understanding the Individual in Org Behavior (Weeks 1–2 content)</div></div>
+      </div>
+    </div>
+
+    <div class="week-divider">Week of Jun 2</div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">M/W/F</div><div class="day-date">Jun 2 wk</div></div>
+      <div class="day-blocks">
+        <div class="block balm"><div class="block-tag">Block 1</div><div class="block-text"><strong>BALM 310X</strong> — Applying Theoretical Concepts of the Individual (submit assessment)</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">T/TH</div><div class="day-date">Jun 2 wk</div></div>
+      <div class="day-blocks">
+        <div class="block balm"><div class="block-tag">Block 1</div><div class="block-text"><strong>BALM 310X</strong> — An Exploration of Group and Team Dynamics</div></div>
+      </div>
+    </div>
+
+    <div class="week-divider">Week of Jun 9</div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">Daily</div><div class="day-date">Jun 9 wk</div></div>
+      <div class="day-blocks">
+        <div class="block balm"><div class="block-tag">Block 1</div><div class="block-text"><strong>BALM 310X</strong> — Using Theory to Diagnose and Improve Team Dynamics (submit assessment)</div></div>
+        <div class="block buffer"><div class="block-tag">Block 2</div><div class="block-text">Buffer / resubmissions</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SPRINT 5 ==================== -->
+  <div class="sprint-section">
+    <div class="sprint-header s5">
+      <div class="sprint-num">SPRINT 5</div>
+      <div class="sprint-dates">Jun 16 – Jun 26</div>
+      <div class="sprint-goal">BALM 310X close &nbsp;·&nbsp; Project: 3 into 1 submitted by Jun 23 &nbsp;·&nbsp; Allow 3 full Block 1s minimum to write integrative essay</div>
+    </div>
+
+    <div class="week-divider">Week of Jun 16</div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">MON</div><div class="day-date">Jun 16</div></div>
+      <div class="day-blocks">
+        <div class="block balm"><div class="block-tag">Block 1</div><div class="block-text"><strong>BALM 310X</strong> — Project: 3 into 1 — outline</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">TUE</div><div class="day-date">Jun 17</div></div>
+      <div class="day-blocks">
+        <div class="block balm"><div class="block-tag">Block 1</div><div class="block-text"><strong>BALM 310X</strong> — Project: 3 into 1 — draft</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">WED</div><div class="day-date">Jun 18</div></div>
+      <div class="day-blocks">
+        <div class="block balm"><div class="block-tag">Block 1</div><div class="block-text"><strong>BALM 310X</strong> — Project: 3 into 1 — revise + submit</div></div>
+        <div class="block milestone"><div class="block-tag">🎓</div><div class="block-text"><strong>BALM 310X CLOSED</strong> — by Jun 20</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">TH–FRI</div><div class="day-date">Jun 19–20</div></div>
+      <div class="day-blocks">
+        <div class="block buffer"><div class="block-tag">Block 1</div><div class="block-text">Buffer + any resubmissions</div></div>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-label"><div class="day-name">Jun 23–26</div><div class="day-date">Buffer</div></div>
+      <div class="day-blocks">
+        <div class="block buffer"><div class="block-tag">Full Buffer</div><div class="block-text">SP closes Jun 26. Nothing should be open.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPLETE BANNER -->
+  <div class="sp-complete">
+    <div class="sp-complete-label">✓ SP Complete</div>
+    <div class="sp-complete-detail">All 8 courses closed by Jun 26, 2026</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div>Sprint Board · APR SP · UW-Parkside Flex Option · B.S. Business Administration, Data Analytics</div>
+    <div>8 courses · 16 credits · Closes Jun 26, 2026</div>
+  </div>
+
+</div>
+</body>
+</html>
