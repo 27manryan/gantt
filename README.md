@@ -28,3 +28,9 @@ Run the scheduling tests with:
 ```sh
 node --test scheduler.test.mjs
 ```
+
+## macOS desktop widget
+
+The [`macOS`](macOS/) directory contains a native SwiftUI companion app and interactive WidgetKit extension. It uses the same assignment model and scheduling rules, with progress shared locally between the app and widget through an App Group.
+
+See [`macOS/README.md`](macOS/README.md) for Xcode signing, installation, and desktop-widget setup.

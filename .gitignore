@@ -1,0 +1,5 @@
+.DS_Store
+macOS/.build/
+macOS/DerivedData/
+macOS/AdaptiveStudyBoard.xcodeproj/xcuserdata/
+*.xcuserstate
