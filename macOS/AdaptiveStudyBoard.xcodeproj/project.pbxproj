@@ -1,0 +1,243 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA2000000000000000000001 /* AdaptiveStudyBoardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000001 /* AdaptiveStudyBoardApp.swift */; };
+		AA2000000000000000000002 /* BoardStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000002 /* BoardStore.swift */; };
+		AA2000000000000000000003 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000003 /* ContentView.swift */; };
+		AA2000000000000000000004 /* AssignmentCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000007 /* AssignmentCatalog.swift */; };
+		AA2000000000000000000005 /* ProgressRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000008 /* ProgressRepository.swift */; };
+		AA2000000000000000000006 /* StudyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000009 /* StudyModel.swift */; };
+		AA2000000000000000000007 /* StudyPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100000000000000000000A /* StudyPlanner.swift */; };
+		AA2000000000000000000008 /* CompleteAssignmentIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000004 /* CompleteAssignmentIntent.swift */; };
+		AA2000000000000000000009 /* AdaptiveStudyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000005 /* AdaptiveStudyWidget.swift */; };
+		AA200000000000000000000A /* AdaptiveStudyWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000006 /* AdaptiveStudyWidgetBundle.swift */; };
+		AA200000000000000000000B /* AssignmentCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000007 /* AssignmentCatalog.swift */; };
+		AA200000000000000000000C /* ProgressRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000008 /* ProgressRepository.swift */; };
+		AA200000000000000000000D /* StudyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000009 /* StudyModel.swift */; };
+		AA200000000000000000000E /* StudyPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100000000000000000000A /* StudyPlanner.swift */; };
+		AA200000000000000000000F /* AdaptiveStudyWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = AA1000000000000000000011 /* AdaptiveStudyWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, CodeSignOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA7000000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA4000000000000000000002;
+			remoteInfo = AdaptiveStudyWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		AA3000000000000000000005 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				AA200000000000000000000F /* AdaptiveStudyWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		AA1000000000000000000001 /* AdaptiveStudyBoardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveStudyBoardApp.swift; sourceTree = "<group>"; };
+		AA1000000000000000000002 /* BoardStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardStore.swift; sourceTree = "<group>"; };
+		AA1000000000000000000003 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AA1000000000000000000004 /* CompleteAssignmentIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteAssignmentIntent.swift; sourceTree = "<group>"; };
+		AA1000000000000000000005 /* AdaptiveStudyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveStudyWidget.swift; sourceTree = "<group>"; };
+		AA1000000000000000000006 /* AdaptiveStudyWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveStudyWidgetBundle.swift; sourceTree = "<group>"; };
+		AA1000000000000000000007 /* AssignmentCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentCatalog.swift; sourceTree = "<group>"; };
+		AA1000000000000000000008 /* ProgressRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRepository.swift; sourceTree = "<group>"; };
+		AA1000000000000000000009 /* StudyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyModel.swift; sourceTree = "<group>"; };
+		AA100000000000000000000A /* StudyPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyPlanner.swift; sourceTree = "<group>"; };
+		AA100000000000000000000B /* MacApp Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = MacApp/Info.plist; sourceTree = SOURCE_ROOT; };
+		AA100000000000000000000C /* AdaptiveStudyBoard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AdaptiveStudyBoard.entitlements; sourceTree = "<group>"; };
+		AA100000000000000000000D /* Widget Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Widget/Info.plist; sourceTree = SOURCE_ROOT; };
+		AA100000000000000000000E /* AdaptiveStudyWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AdaptiveStudyWidget.entitlements; sourceTree = "<group>"; };
+		AA1000000000000000000010 /* AdaptiveStudyBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdaptiveStudyBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA1000000000000000000011 /* AdaptiveStudyWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AdaptiveStudyWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA3000000000000000000002 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		AA3000000000000000000004 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA0000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000004 /* MacApp */,
+				AA0000000000000000000005 /* Widget */,
+				AA0000000000000000000006 /* Shared */,
+				AA0000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA1000000000000000000010 /* AdaptiveStudyBoard.app */,
+				AA1000000000000000000011 /* AdaptiveStudyWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000004 /* MacApp */ = {
+			isa = PBXGroup;
+			children = (
+				AA1000000000000000000001 /* AdaptiveStudyBoardApp.swift */,
+				AA1000000000000000000002 /* BoardStore.swift */,
+				AA1000000000000000000003 /* ContentView.swift */,
+				AA100000000000000000000B /* MacApp Info.plist */,
+				AA100000000000000000000C /* AdaptiveStudyBoard.entitlements */,
+			);
+			path = MacApp;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000005 /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				AA1000000000000000000004 /* CompleteAssignmentIntent.swift */,
+				AA1000000000000000000005 /* AdaptiveStudyWidget.swift */,
+				AA1000000000000000000006 /* AdaptiveStudyWidgetBundle.swift */,
+				AA100000000000000000000D /* Widget Info.plist */,
+				AA100000000000000000000E /* AdaptiveStudyWidget.entitlements */,
+			);
+			path = Widget;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000006 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				AA1000000000000000000007 /* AssignmentCatalog.swift */,
+				AA1000000000000000000008 /* ProgressRepository.swift */,
+				AA1000000000000000000009 /* StudyModel.swift */,
+				AA100000000000000000000A /* StudyPlanner.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA4000000000000000000001 /* AdaptiveStudyBoard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA6000000000000000000002 /* Build configuration list for PBXNativeTarget "AdaptiveStudyBoard" */;
+			buildPhases = (
+				AA3000000000000000000001 /* Sources */,
+				AA3000000000000000000002 /* Frameworks */,
+				AA3000000000000000000005 /* Embed App Extensions */,
+			);
+			buildRules = ();
+			dependencies = (AA7000000000000000000002 /* PBXTargetDependency */, );
+			name = AdaptiveStudyBoard;
+			productName = AdaptiveStudyBoard;
+			productReference = AA1000000000000000000010 /* AdaptiveStudyBoard.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AA4000000000000000000002 /* AdaptiveStudyWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA6000000000000000000003 /* Build configuration list for PBXNativeTarget "AdaptiveStudyWidget" */;
+			buildPhases = (
+				AA3000000000000000000003 /* Sources */,
+				AA3000000000000000000004 /* Frameworks */,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = AdaptiveStudyWidget;
+			productName = AdaptiveStudyWidget;
+			productReference = AA1000000000000000000011 /* AdaptiveStudyWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA0000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					AA4000000000000000000001 = {CreatedOnToolsVersion = 26.0; SystemCapabilities = {com.apple.ApplicationGroups = {enabled = 1; }; }; };
+					AA4000000000000000000002 = {CreatedOnToolsVersion = 26.0; SystemCapabilities = {com.apple.ApplicationGroups = {enabled = 1; }; }; };
+				};
+			};
+			buildConfigurationList = AA6000000000000000000001 /* Build configuration list for PBXProject "AdaptiveStudyBoard" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (en, Base, );
+			mainGroup = AA0000000000000000000002;
+			productRefGroup = AA0000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA4000000000000000000001 /* AdaptiveStudyBoard */,
+				AA4000000000000000000002 /* AdaptiveStudyWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA3000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA2000000000000000000001 /* AdaptiveStudyBoardApp.swift in Sources */,
+				AA2000000000000000000002 /* BoardStore.swift in Sources */,
+				AA2000000000000000000003 /* ContentView.swift in Sources */,
+				AA2000000000000000000004 /* AssignmentCatalog.swift in Sources */,
+				AA2000000000000000000005 /* ProgressRepository.swift in Sources */,
+				AA2000000000000000000006 /* StudyModel.swift in Sources */,
+				AA2000000000000000000007 /* StudyPlanner.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA3000000000000000000003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA2000000000000000000008 /* CompleteAssignmentIntent.swift in Sources */,
+				AA2000000000000000000009 /* AdaptiveStudyWidget.swift in Sources */,
+				AA200000000000000000000A /* AdaptiveStudyWidgetBundle.swift in Sources */,
+				AA200000000000000000000B /* AssignmentCatalog.swift in Sources */,
+				AA200000000000000000000C /* ProgressRepository.swift in Sources */,
+				AA200000000000000000000D /* StudyModel.swift in Sources */,
+				AA200000000000000000000E /* StudyPlanner.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA7000000000000000000002 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = AA4000000000000000000002 /* AdaptiveStudyWidget */; targetProxy = AA7000000000000000000001 /* PBXContainerItemProxy */; };
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AA5000000000000000000001 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {CLANG_ENABLE_MODULES = YES; COPY_PHASE_STRIP = NO; DEBUG_INFORMATION_FORMAT = dwarf; ENABLE_TESTABILITY = YES; GCC_OPTIMIZATION_LEVEL = 0; MACOSX_DEPLOYMENT_TARGET = 14.0; ONLY_ACTIVE_ARCH = YES; SDKROOT = macosx; SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)"; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; SWIFT_VERSION = 6.0; }; name = Debug; };
+		AA5000000000000000000002 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {CLANG_ENABLE_MODULES = YES; COPY_PHASE_STRIP = YES; DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym"; MACOSX_DEPLOYMENT_TARGET = 14.0; SDKROOT = macosx; SWIFT_COMPILATION_MODE = wholemodule; SWIFT_OPTIMIZATION_LEVEL = "-O"; SWIFT_VERSION = 6.0; }; name = Release; };
+		AA5000000000000000000003 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_ENTITLEMENTS = MacApp/AdaptiveStudyBoard.entitlements; CODE_SIGN_STYLE = Automatic; COMBINE_HIDPI_IMAGES = YES; CURRENT_PROJECT_VERSION = 1; ENABLE_HARDENED_RUNTIME = YES; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = MacApp/Info.plist; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks"; MARKETING_VERSION = 1.0; PRODUCT_BUNDLE_IDENTIFIER = io.github.27manryan.AdaptiveStudyBoard; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_EMIT_LOC_STRINGS = YES; }; name = Debug; };
+		AA5000000000000000000004 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_ENTITLEMENTS = MacApp/AdaptiveStudyBoard.entitlements; CODE_SIGN_STYLE = Automatic; COMBINE_HIDPI_IMAGES = YES; CURRENT_PROJECT_VERSION = 1; ENABLE_HARDENED_RUNTIME = YES; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = MacApp/Info.plist; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks"; MARKETING_VERSION = 1.0; PRODUCT_BUNDLE_IDENTIFIER = io.github.27manryan.AdaptiveStudyBoard; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_EMIT_LOC_STRINGS = YES; }; name = Release; };
+		AA5000000000000000000005 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = Widget/AdaptiveStudyWidget.entitlements; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Widget/Info.plist; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks"; MARKETING_VERSION = 1.0; PRODUCT_BUNDLE_IDENTIFIER = io.github.27manryan.AdaptiveStudyBoard.Widget; PRODUCT_NAME = "$(TARGET_NAME)"; SKIP_INSTALL = YES; SWIFT_EMIT_LOC_STRINGS = YES; }; name = Debug; };
+		AA5000000000000000000006 /* Release */ = {isa = XCBuildConfiguration; buildSettings = {APPLICATION_EXTENSION_API_ONLY = YES; CODE_SIGN_ENTITLEMENTS = Widget/AdaptiveStudyWidget.entitlements; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Widget/Info.plist; LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks"; MARKETING_VERSION = 1.0; PRODUCT_BUNDLE_IDENTIFIER = io.github.27manryan.AdaptiveStudyBoard.Widget; PRODUCT_NAME = "$(TARGET_NAME)"; SKIP_INSTALL = YES; SWIFT_EMIT_LOC_STRINGS = YES; }; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA6000000000000000000001 /* Build configuration list for PBXProject "AdaptiveStudyBoard" */ = {isa = XCConfigurationList; buildConfigurations = (AA5000000000000000000001 /* Debug */, AA5000000000000000000002 /* Release */, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		AA6000000000000000000002 /* Build configuration list for PBXNativeTarget "AdaptiveStudyBoard" */ = {isa = XCConfigurationList; buildConfigurations = (AA5000000000000000000003 /* Debug */, AA5000000000000000000004 /* Release */, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		AA6000000000000000000003 /* Build configuration list for PBXNativeTarget "AdaptiveStudyWidget" */ = {isa = XCConfigurationList; buildConfigurations = (AA5000000000000000000005 /* Debug */, AA5000000000000000000006 /* Release */, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+	};
+	rootObject = AA0000000000000000000001 /* Project object */;
+}
