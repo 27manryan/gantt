@@ -9,7 +9,12 @@ struct StudyBoardEntry: TimelineEntry {
 
 struct StudyBoardProvider: TimelineProvider {
     func placeholder(in context: Context) -> StudyBoardEntry {
-        entry(progress: ProgressSnapshot(planFrom: PlannerConfiguration.apr2026.start))
+        entry(
+            progress: ProgressSnapshot(
+                completedIDs: AssignmentCatalog.initialCompletedIDs,
+                planFrom: PlannerConfiguration.jul2026.start
+            )
+        )
     }
 
     func getSnapshot(in context: Context, completion: @escaping (StudyBoardEntry) -> Void) {

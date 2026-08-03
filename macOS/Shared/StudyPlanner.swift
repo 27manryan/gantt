@@ -5,6 +5,8 @@ public struct PlannerConfiguration: Sendable {
     public let end: String
     public let excludedDates: Set<String>
     public let capacityByDate: [String: Int]
+    public let workingWeekdays: Set<Int>
+    public let defaultCapacity: Int
     public let incompatibleCourses: [CourseID: Set<CourseID>]
 
     public init(
@@ -12,21 +14,30 @@ public struct PlannerConfiguration: Sendable {
         end: String,
         excludedDates: Set<String> = [],
         capacityByDate: [String: Int] = [:],
+        workingWeekdays: Set<Int> = [2, 3, 4, 5, 6],
+        defaultCapacity: Int = 2,
         incompatibleCourses: [CourseID: Set<CourseID>] = [:]
     ) {
         self.start = start
         self.end = end
         self.excludedDates = excludedDates
         self.capacityByDate = capacityByDate
+        self.workingWeekdays = workingWeekdays
+        self.defaultCapacity = defaultCapacity
         self.incompatibleCourses = incompatibleCourses
     }
 
-    public static let apr2026 = PlannerConfiguration(
-        start: "2026-04-13",
-        end: "2026-06-26",
-        excludedDates: ["2026-05-25"],
-        capacityByDate: ["2026-04-17": 1],
-        incompatibleCourses: [.baba: [.balm], .balm: [.baba]]
+    public static let jul2026 = PlannerConfiguration(
+        start: "2026-07-07",
+        end: "2026-09-25",
+        capacityByDate: [
+            "2026-07-11": 1, "2026-07-18": 1, "2026-07-25": 1,
+            "2026-08-01": 1, "2026-08-08": 1, "2026-08-15": 1,
+            "2026-08-22": 1, "2026-08-29": 1, "2026-09-05": 1,
+            "2026-09-12": 1, "2026-09-19": 1,
+        ],
+        workingWeekdays: [2, 3, 4, 5, 6, 7],
+        incompatibleCourses: [.baba: [.baos310], .baos310: [.baba]]
     )
 }
 
@@ -73,8 +84,8 @@ public enum StudyPlanner {
 
         while cursor <= end {
             let weekday = StudyDate.weekday(cursor)
-            if weekday != 1, weekday != 7, !configuration.excludedDates.contains(cursor) {
-                let capacity = max(0, configuration.capacityByDate[cursor] ?? 2)
+            if configuration.workingWeekdays.contains(weekday), !configuration.excludedDates.contains(cursor) {
+                let capacity = max(0, configuration.capacityByDate[cursor] ?? configuration.defaultCapacity)
                 if capacity > 0 { result.append((cursor, capacity)) }
             }
             cursor = StudyDate.addDays(cursor, 1)
@@ -86,7 +97,7 @@ public enum StudyPlanner {
     public static func makePlan(
         assignments: [StudyAssignment],
         progress: ProgressSnapshot,
-        configuration: PlannerConfiguration = .apr2026
+        configuration: PlannerConfiguration = .jul2026
     ) -> StudyPlan {
         let workDays = workDays(from: progress.planFrom, through: configuration.end, configuration: configuration)
             .map { WorkDay(date: $0.date, capacity: $0.capacity) }
@@ -100,6 +111,9 @@ public enum StudyPlanner {
                     guard day.date >= earliest else { return false }
                     let existing = scheduledByDate[day.date, default: []]
                     guard existing.count < day.capacity else { return false }
+                    guard existing.filter({ $0.assignment.id == assignment.id }).count < 1 else { return false }
+                    let isHeavy = assignment.blocks > 1
+                    guard !isHeavy || existing.allSatisfy({ $0.assignment.blocks == 1 }) else { return false }
                     let blocked = configuration.incompatibleCourses[assignment.course, default: []]
                     return existing.allSatisfy { !blocked.contains($0.assignment.course) }
                 }) else {

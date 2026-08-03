@@ -1,14 +1,12 @@
 import Foundation
 
 public enum CourseID: String, Codable, CaseIterable, Hashable, Sendable {
-    case bama
-    case mus
-    case baef201
-    case baef302
-    case pmgt
-    case bams
+    case baos310
+    case baef210
+    case baos302
     case baba
-    case balm
+    case geo
+    case ant
 }
 
 public struct CourseInfo: Identifiable, Hashable, Sendable {

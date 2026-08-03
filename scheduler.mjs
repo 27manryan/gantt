@@ -17,15 +17,23 @@ export function compareDates(left, right) {
   return left.localeCompare(right);
 }
 
-export function buildWorkDays({ start, end, excludedDates = [], capacityByDate = {} }) {
+export function buildWorkDays({
+  start,
+  end,
+  excludedDates = [],
+  capacityByDate = {},
+  workingWeekdays = [1, 2, 3, 4, 5],
+  defaultCapacity = 2,
+}) {
   const excluded = new Set(excludedDates);
+  const workingDays = new Set(workingWeekdays);
   const days = [];
 
   for (let cursor = start; compareDates(cursor, end) <= 0; cursor = addDays(cursor, 1)) {
     const weekday = parseDate(cursor).getUTCDay();
-    if (weekday === 0 || weekday === 6 || excluded.has(cursor)) continue;
+    if (!workingDays.has(weekday) || excluded.has(cursor)) continue;
 
-    const capacity = Math.max(0, capacityByDate[cursor] ?? 2);
+    const capacity = Math.max(0, capacityByDate[cursor] ?? defaultCapacity);
     if (capacity > 0) days.push({ date: cursor, capacity });
   }
 
@@ -38,6 +46,10 @@ function nextAvailableSlot(days, slots, task, incompatibleCourses) {
     if ((slots.get(day.date)?.length ?? 0) >= day.capacity) return false;
 
     const coursesOnDay = new Set((slots.get(day.date) ?? []).map((item) => item.course));
+    const sameAssignmentBlocks = (slots.get(day.date) ?? []).filter((item) => item.id === task.id).length;
+    if (sameAssignmentBlocks >= (task.maxBlocksPerDay ?? 1)) return false;
+    const isHeavy = (task.blocks ?? 1) > 1;
+    if (isHeavy && (slots.get(day.date) ?? []).some((item) => (item.blocks ?? 1) > 1)) return false;
     const blocked = incompatibleCourses[task.course] ?? [];
     return blocked.every((course) => !coursesOnDay.has(course));
   });
@@ -54,6 +66,8 @@ export function scheduleAssignments({
   termEnd,
   excludedDates = [],
   capacityByDate = {},
+  workingWeekdays = [1, 2, 3, 4, 5],
+  defaultCapacity = 2,
   incompatibleCourses = {},
 }) {
   const completed = new Set(completedIds);
@@ -62,6 +76,8 @@ export function scheduleAssignments({
     end: termEnd,
     excludedDates,
     capacityByDate,
+    workingWeekdays,
+    defaultCapacity,
   });
   const slots = new Map(days.map((day) => [day.date, []]));
   const unscheduled = [];

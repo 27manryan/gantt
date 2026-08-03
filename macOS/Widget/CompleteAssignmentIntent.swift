@@ -2,8 +2,8 @@ import AppIntents
 import WidgetKit
 
 struct CompleteAssignmentIntent: AppIntent {
-    static var title: LocalizedStringResource = "Complete assignment"
-    static var description = IntentDescription("Marks an assignment complete and recalculates the study plan.")
+    static let title: LocalizedStringResource = "Complete assignment"
+    static let description = IntentDescription("Marks an assignment complete and recalculates the study plan.")
 
     @Parameter(title: "Assignment ID")
     var assignmentID: String

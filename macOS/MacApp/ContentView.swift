@@ -30,14 +30,14 @@ struct ContentView: View {
         ) {
             Button("Reset progress", role: .destructive) { store.reset() }
         } message: {
-            Text("Every completed assignment will be reopened and the planning date will return to April 13.")
+            Text("Progress will return to the completion state recorded in the vault board and the planning date will return to today.")
         }
     }
 
     private var header: some View {
         HStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 8) {
-                Label("UW–PARKSIDE FLEX · APR 2026", systemImage: "circle.fill")
+                Label("UW–PARKSIDE FLEX · JUL–SEP 2026", systemImage: "circle.fill")
                     .font(.system(size: 11, weight: .bold, design: .rounded))
                     .foregroundStyle(Color.greenSignal)
                 Text("Adaptive study board")
@@ -49,9 +49,9 @@ struct ContentView: View {
             }
             Spacer()
             VStack(alignment: .trailing, spacing: 5) {
-                Text("APR 7  →  JUN 26")
+                Text("JUL 7  →  SEP 25")
                     .font(.system(size: 13, weight: .semibold, design: .monospaced))
-                Text("8 courses · 16 credits")
+                Text("6 courses · 14 credits · Aug 27 target")
                     .font(.caption)
                     .foregroundStyle(.white.opacity(0.55))
             }
@@ -101,8 +101,8 @@ struct ContentView: View {
                 label: "PLAN HEALTH",
                 value: planHasProblems ? "Needs attention" : "On track",
                 detail: planHasProblems
-                    ? "\(uniqueLateCount) late · \(store.plan.unscheduled.count) cannot fit"
-                    : "Everything fits before deadline",
+                    ? "\(uniqueLateCount) past plan · \(store.plan.unscheduled.count) cannot fit"
+                    : "Everything fits before planned finish",
                 danger: planHasProblems
             )
         }
@@ -156,7 +156,7 @@ struct ContentView: View {
     }
 
     private var dateRange: ClosedRange<Date> {
-        DateText.localDate(PlannerConfiguration.apr2026.start)...DateText.localDate(PlannerConfiguration.apr2026.end)
+        DateText.localDate(PlannerConfiguration.jul2026.start)...DateText.localDate(PlannerConfiguration.jul2026.end)
     }
 }
 

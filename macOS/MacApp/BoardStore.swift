@@ -39,14 +39,17 @@ final class BoardStore: ObservableObject {
     }
 
     func setPlanFrom(_ date: String) {
-        guard date >= PlannerConfiguration.apr2026.start, date <= PlannerConfiguration.apr2026.end else { return }
+        guard date >= PlannerConfiguration.jul2026.start, date <= PlannerConfiguration.jul2026.end else { return }
         progress.planFrom = date
         persist()
     }
 
     func reset() {
         repository.reset()
-        progress = ProgressSnapshot(planFrom: PlannerConfiguration.apr2026.start)
+        progress = ProgressSnapshot(
+            completedIDs: AssignmentCatalog.initialCompletedIDs,
+            planFrom: AssignmentCatalog.defaultPlanFrom()
+        )
         WidgetCenter.shared.reloadAllTimelines()
     }
 

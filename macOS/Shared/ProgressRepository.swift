@@ -2,7 +2,7 @@ import Foundation
 
 public struct ProgressRepository {
     public static let appGroup = "group.io.github.27manryan.AdaptiveStudyBoard"
-    private static let storageKey = "adaptive-study-board-progress-v1"
+    private static let storageKey = "adaptive-study-board-jul-sep-progress-v2"
 
     private let defaults: UserDefaults
 
@@ -10,12 +10,15 @@ public struct ProgressRepository {
         self.defaults = UserDefaults(suiteName: suiteName) ?? .standard
     }
 
-    public func load(defaultPlanFrom: String = AssignmentCatalog.defaultPlanFrom()) -> ProgressSnapshot {
+    public func load(
+        defaultPlanFrom: String = AssignmentCatalog.defaultPlanFrom(),
+        defaultCompletedIDs: Set<String> = AssignmentCatalog.initialCompletedIDs
+    ) -> ProgressSnapshot {
         guard
             let data = defaults.data(forKey: Self.storageKey),
             let snapshot = try? JSONDecoder().decode(ProgressSnapshot.self, from: data)
         else {
-            return ProgressSnapshot(planFrom: defaultPlanFrom)
+            return ProgressSnapshot(completedIDs: defaultCompletedIDs, planFrom: defaultPlanFrom)
         }
         return snapshot
     }

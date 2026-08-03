@@ -1,84 +1,91 @@
 import { compareDates, parseDate, scheduleAssignments } from "./scheduler.mjs";
 
 const TERM = {
-  start: "2026-04-13",
-  end: "2026-06-26",
-  excludedDates: ["2026-05-25"],
-  capacityByDate: { "2026-04-17": 1 },
+  start: "2026-07-07",
+  target: "2026-08-27",
+  end: "2026-09-25",
+  excludedDates: [],
+  workingWeekdays: [1, 2, 3, 4, 5, 6],
+  capacityByDate: {
+    "2026-07-11": 1,
+    "2026-07-18": 1,
+    "2026-07-25": 1,
+    "2026-08-01": 1,
+    "2026-08-08": 1,
+    "2026-08-15": 1,
+    "2026-08-22": 1,
+    "2026-08-29": 1,
+    "2026-09-05": 1,
+    "2026-09-12": 1,
+    "2026-09-19": 1,
+  },
 };
 
 const COURSES = {
-  bama: { code: "BAMA 300X", name: "Applied Business Statistics", color: "#14745a" },
-  mus: { code: "MUS 273X", name: "Jazz History", color: "#b46a16" },
-  baef201: { code: "BAEF 201X", name: "Financial Accounting", color: "#b73870" },
-  baef302: { code: "BAEF 302X", name: "Finance", color: "#7057c9" },
-  pmgt: { code: "PMGT 315X", name: "Project Management", color: "#7454a6" },
-  bams: { code: "BAMS 301X", name: "Marketing", color: "#1d70a2" },
-  baba: { code: "BABA 301X", name: "Data Visualization", color: "#3c7d33" },
-  balm: { code: "BALM 310X", name: "Organizational Behavior", color: "#a44c2c" },
+  baos310: { code: "BAOS 310", name: "Reshoring Product Manufacturing", color: "#14745a" },
+  baef210: { code: "BAEF 210", name: "Cost Accounting Fundamentals", color: "#b73870" },
+  baos302: { code: "BAOS 302", name: "Building Competitive Advantage Using IS", color: "#7057c9" },
+  baba: { code: "BABA 302", name: "R Fundamentals for Business Analytics", color: "#1d70a2" },
+  geo: { code: "GEO 125", name: "Physical Geography", color: "#3c7d33" },
+  ant: { code: "ANT 107", name: "Introduction to Biological Anthropology", color: "#b46a16" },
 };
 
 const task = (id, course, title, earliest, due, extra = {}) => ({ id, course, title, earliest, due, blocks: 1, ...extra });
 
 const ASSIGNMENTS = [
-  task("bama-normal", "bama", "Normal distribution, sampling & confidence intervals", "2026-04-13", "2026-04-24", { note: "Pre-assessment, then assessment" }),
-  task("mus-m3", "mus", "Module 3 · Early Jazz assessment", "2026-04-13", "2026-04-24"),
-  task("bama-quiz-1", "bama", "Quiz · Probability, distributions & confidence intervals", "2026-04-14", "2026-04-24", { note: "75 minutes · 8 problems" }),
-  task("mus-m4", "mus", "Module 4 · Swing and Bebop assessment", "2026-04-14", "2026-04-24"),
-  task("bama-hypothesis", "bama", "Hypothesis testing for population means", "2026-04-15", "2026-04-24", { note: "Pre-assessment, then assessment" }),
-  task("mus-m6", "mus", "Module 6 · Cool Jazz and Free Jazz assessment", "2026-04-15", "2026-04-24"),
-  task("bama-chi-pre", "bama", "Chi-square tests · pre-assessment", "2026-04-17", "2026-04-24", { note: "Limited-availability day" }),
-  task("bama-chi", "bama", "Chi-square tests · assessment", "2026-04-20", "2026-04-24"),
-  task("bama-quiz-2", "bama", "Quiz · Hypothesis testing and chi-square", "2026-04-20", "2026-04-24", { note: "75 minutes · 6 problems" }),
-  task("bama-project-setup", "bama", "Stock markets project · stocks, workbook & data", "2026-04-20", "2026-05-01"),
-  task("mus-m7", "mus", "Module 7 · Fusion and present assessment", "2026-04-20", "2026-05-08"),
-  task("bama-project-analysis", "bama", "Stock markets project · calculations and tests", "2026-04-21", "2026-05-01"),
-  task("mus-m8", "mus", "Module 8 · Compare and contrast discussion", "2026-04-21", "2026-05-08"),
-  task("bama-project-report", "bama", "Stock markets project · write report", "2026-04-22", "2026-05-01"),
-  task("baef201-ethics", "baef201", "Ethical considerations in accounting", "2026-04-22", "2026-05-08"),
-  task("bama-project-submit", "bama", "Stock markets project · finalize and submit", "2026-04-23", "2026-05-01"),
-  task("baef201-bank", "baef201", "Bank reconciliation and internal controls", "2026-04-23", "2026-05-08"),
-  task("baef302-jj", "baef302", "J&J performance evaluation and financial calculators paper", "2026-04-24", "2026-05-08"),
-  task("mus-video-pick", "mus", "Choose and save a jazz concert video", "2026-04-24", "2026-04-28", { note: "YouTube or PBS · about 15 minutes" }),
-  task("baef201-project", "baef201", "Fraud triangle case study project", "2026-04-27", "2026-05-08"),
-  task("baef302-personal", "baef302", "Personal finances and business valuation approaches", "2026-04-27", "2026-05-08"),
-  task("baef302-valuation", "baef302", "Valuation of a firm project", "2026-04-28", "2026-05-08"),
-  task("pmgt-assessments", "pmgt", "Read course content and complete assessments", "2026-04-28", "2026-05-08", { blocks: 2 }),
-  task("mus-concert-watch", "mus", "Watch jazz performance and take notes", "2026-04-29", "2026-05-08", { blocks: 2, note: "Approximately 90 minutes total" }),
-  task("mus-concert-essay", "mus", "Concert essay · write and submit", "2026-04-29", "2026-05-08", { note: "2 pages · double-spaced" }),
-  task("mus-paper-sources", "mus", "Research paper · outline and gather sources", "2026-04-30", "2026-06-19", { note: "3+ written sources; no textbook or Wikipedia" }),
-  task("mus-paper-draft", "mus", "Research paper · draft", "2026-04-30", "2026-06-19", { blocks: 2 }),
-  task("mus-paper-submit", "mus", "Research paper · revise and submit", "2026-05-01", "2026-06-19", { note: "5 pages · jazz history and Black ethnic struggle" }),
-  task("bama-confirm", "bama", "Confirm final grade or resubmit", "2026-05-04", "2026-05-08"),
-  task("bama-advisor", "bama", "Contact advisor and request July SP enrollment", "2026-05-08", "2026-05-08", { note: "BABA 300X, BABA 302X and BABA 304X" }),
-  task("bams-content", "bams", "Course content modules", "2026-05-04", "2026-05-15", { blocks: 4 }),
-  task("bams-plan-draft", "bams", "Marketing plan · draft", "2026-05-07", "2026-05-15"),
-  task("bams-plan-submit", "bams", "Marketing plan · finalize and submit", "2026-05-08", "2026-05-15"),
-  task("bams-presentation", "bams", "Record and submit presentation", "2026-05-11", "2026-05-15", { blocks: 2 }),
-  task("bams-confirm", "bams", "Confirm grade or resubmit", "2026-05-13", "2026-05-15"),
-  task("baba-m1", "baba", "Module 1 · Install Tableau and preliminary graphs", "2026-05-11", "2026-06-05"),
-  task("baba-m2", "baba", "Module 2 · Basic visualizations", "2026-05-11", "2026-06-05", { blocks: 2 }),
-  task("baba-m3", "baba", "Module 3 · Beyond basic visualizations", "2026-05-12", "2026-06-05", { blocks: 2 }),
-  task("baba-m4", "baba", "Module 4 · Calculations and parameters", "2026-05-13", "2026-06-05", { blocks: 2 }),
-  task("baba-m5", "baba", "Module 5 · Level of detail calculations", "2026-05-14", "2026-06-05", { blocks: 2 }),
-  task("baba-m6", "baba", "Module 6 · Table calculations", "2026-05-14", "2026-06-05", { blocks: 2 }),
-  task("baba-m7", "baba", "Module 7 · Data story with dashboards", "2026-05-15", "2026-06-05", { blocks: 2 }),
-  task("baba-m8", "baba", "Module 8 · Creating dashboards", "2026-05-18", "2026-06-05", { blocks: 2 }),
-  task("baba-m9", "baba", "Module 9 · Forecasting with Tableau", "2026-05-19", "2026-06-05", { blocks: 2 }),
-  task("baba-m10", "baba", "Module 10 · Dynamic dashboards", "2026-05-20", "2026-06-05", { blocks: 2 }),
-  task("baba-m11", "baba", "Module 11 · Creating maps", "2026-05-21", "2026-06-05", { blocks: 2 }),
-  task("baba-m12", "baba", "Module 12 · Joins, blends and messy data", "2026-05-26", "2026-06-05", { blocks: 2 }),
-  task("baba-final", "baba", "Final assessment · Messy data and visualization", "2026-05-27", "2026-06-05", { blocks: 2 }),
-  task("balm-individual-content", "balm", "Understanding the individual · course content", "2026-05-26", "2026-06-12", { blocks: 2 }),
-  task("balm-individual-assessment", "balm", "Apply theories of the individual · assessment", "2026-06-01", "2026-06-12", { blocks: 2 }),
-  task("balm-team-content", "balm", "Group and team dynamics · course content", "2026-06-02", "2026-06-12", { blocks: 2 }),
-  task("balm-team-assessment", "balm", "Diagnose and improve team dynamics · assessment", "2026-06-08", "2026-06-12", { blocks: 2 }),
-  task("balm-project-outline", "balm", "Project 3 into 1 · outline", "2026-06-15", "2026-06-23"),
-  task("balm-project-draft", "balm", "Project 3 into 1 · draft", "2026-06-16", "2026-06-23"),
-  task("balm-project-submit", "balm", "Project 3 into 1 · revise and submit", "2026-06-17", "2026-06-23"),
+  task("baos310-part1", "baos310", "Project Part I · Strategic reasons for doing business globally", "2026-07-07", "2026-07-18", { blocks: 2, note: "10-page executive analysis · TCO output, recommendation, formatting and submission" }),
+  task("baos310-part2", "baos310", "Project Part II · Benefits and challenges in global business", "2026-07-18", "2026-07-22", { blocks: 4, note: "Country risk, sourcing, sustainability, revision and submission" }),
+  task("baos310-part3", "baos310", "Project Part III · Current trends in global business", "2026-07-22", "2026-07-25", { blocks: 4, note: "ERP flows, economic integration, business model and final recommendation" }),
+  task("geo-m1", "geo", "Module 1 · Four spheres tools and introductory labs", "2026-07-15", "2026-07-24", { blocks: 2 }),
+  task("ant-m1-quizzes", "ant", "Module 1 · Quizzes", "2026-07-11", "2026-07-25"),
+  task("ant-m1-presentation", "ant", "Module 1 · Presentation", "2026-07-23", "2026-07-27", { blocks: 2 }),
+  task("ant-m1-lab", "ant", "Module 1 · Lab", "2026-07-25", "2026-07-29"),
+  task("geo-m2", "geo", "Module 2 · Earth layers, plate boundaries and lithosphere activity", "2026-07-28", "2026-08-01", { blocks: 3 }),
+  task("baba-w4", "baba", "Week 4 · Linear and multiple regression", "2026-07-31", "2026-08-03", { blocks: 2 }),
+  task("baba-w5", "baba", "Week 5 · Multiple regression assessments in Excel and R", "2026-08-04", "2026-08-04"),
+  task("ant-m2-quizzes", "ant", "Module 2 · Quizzes", "2026-07-31", "2026-08-03"),
+  task("ant-m2-presentation", "ant", "Module 2 · Presentation", "2026-08-03", "2026-08-04", { blocks: 2 }),
+  task("baba-w6", "baba", "Week 6 · T-test examples in Excel and R", "2026-08-05", "2026-08-05"),
+  task("geo-m3", "geo", "Module 3 · Atmosphere, climate and applied activity", "2026-08-05", "2026-08-07", { blocks: 3 }),
+  task("baba-w7", "baba", "Week 7 · Paired t-test examples in Excel and R", "2026-08-06", "2026-08-06"),
+  task("ant-m2-lab", "ant", "Module 2 · Lab", "2026-08-04", "2026-08-07"),
+  task("baba-w8", "baba", "Week 8 · T-test and paired t-test assessments", "2026-08-08", "2026-08-10", { blocks: 2 }),
+  task("ant-m3-quizzes", "ant", "Module 3 · Quizzes", "2026-08-10", "2026-08-10"),
+  task("baba-w9", "baba", "Week 9 · ANOVA examples, parts 1 and 2", "2026-08-11", "2026-08-11"),
+  task("geo-m4", "geo", "Module 4 · Ecosystems, populations and biosphere activity", "2026-08-11", "2026-08-15", { blocks: 3 }),
+  task("baba-w10", "baba", "Week 10 · ANOVA database examples, parts 3 and 4", "2026-08-12", "2026-08-12"),
+  task("ant-m3-presentation", "ant", "Module 3 · Presentation", "2026-08-12", "2026-08-13", { blocks: 2 }),
+  task("baba-w11", "baba", "Week 11 · Healthcare ANOVA examples, parts 5 and 6", "2026-08-13", "2026-08-13"),
+  task("baba-w12", "baba", "Week 12 · Finish incomplete work and course cleanup", "2026-08-14", "2026-08-15", { blocks: 2 }),
+  task("ant-m3-lab", "ant", "Module 3 · Lab", "2026-08-14", "2026-08-17"),
+  task("geo-m5", "geo", "Module 5 · Hydrosphere labs and applied activity", "2026-08-17", "2026-08-20", { blocks: 4 }),
+  task("ant-m4-quizzes", "ant", "Module 4 · Quizzes", "2026-08-18", "2026-08-18"),
+  task("ant-m4-presentation", "ant", "Module 4 · Presentation", "2026-08-19", "2026-08-21", { blocks: 3 }),
+  task("ant-m4-lab", "ant", "Module 4 · Lab", "2026-08-22", "2026-08-25", { blocks: 2 }),
+  task("geo-m6", "geo", "Module 6 · Geography Unveiled capstone", "2026-08-21", "2026-08-26", { blocks: 3, note: "Board risk: scheduled after the Aug 21 first-submission line" }),
+  task("baef-basics", "baef210", "The Basics quiz", "2026-07-10", "2026-07-10"),
+  task("baef-part1", "baef210", "Project Part 1 · Job order costing", "2026-07-10", "2026-07-13"),
+  task("baef-part2", "baef210", "Project Part 2 · Process costing", "2026-07-14", "2026-07-14"),
+  task("baef-part3", "baef210", "Project Part 3 · Absorption vs. variable costing", "2026-07-15", "2026-07-15"),
+  task("baef-part4", "baef210", "Project Part 4 · Activity-based costing", "2026-07-16", "2026-07-16"),
+  task("baef-close", "baef210", "Costing Methods quiz", "2026-07-17", "2026-07-17"),
+  task("baos302-diagram", "baos302", "Activity diagram and cross-functional flowchart", "2026-07-07", "2026-07-15"),
+  task("baos302-cases", "baos302", "Use cases", "2026-07-07", "2026-07-15"),
+  task("baos302-security", "baos302", "Enterprise systems and security", "2026-07-07", "2026-07-15"),
+  task("baos302-cloud", "baos302", "Cloud computing LinkedIn Learning certificate", "2026-07-07", "2026-07-15"),
+  task("baba-w1", "baba", "Week 1 · Getting started, visualization and programming constructs", "2026-07-27", "2026-07-27"),
+  task("baba-w2", "baba", "Week 2 · Loops, ggplot and R Markdown", "2026-07-28", "2026-07-29", { blocks: 2 }),
+  task("baba-w3", "baba", "Week 3 · R Markdown and linear regression examples", "2026-07-30", "2026-07-30", { blocks: 2 }),
+  task("ant-fci", "ant", "First-course interaction check-in", "2026-07-07", "2026-07-11"),
 ];
 
-const STORAGE_KEY = "apr-sp-adaptive-board-v2";
+const INITIAL_COMPLETED_IDS = new Set([
+  "baef-basics", "baef-part1", "baef-part2", "baef-part3", "baef-part4", "baef-close",
+  "baos302-diagram", "baos302-cases", "baos302-security", "baos302-cloud",
+  "baba-w1", "baba-w2", "baba-w3", "ant-fci",
+]);
+
+const STORAGE_KEY = "jul-sep-adaptive-board-v3";
 const dateFormat = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
 const weekdayFormat = new Intl.DateTimeFormat("en-US", { weekday: "short", timeZone: "UTC" });
 const longDateFormat = new Intl.DateTimeFormat("en-US", { month: "long", day: "numeric", timeZone: "UTC" });
@@ -113,13 +120,15 @@ function loadState() {
   try {
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
     const validIds = new Set(ASSIGNMENTS.map(({ id }) => id));
-    const completed = Array.isArray(stored?.completed) ? stored.completed.filter((id) => validIds.has(id)) : [];
+    const completed = Array.isArray(stored?.completed)
+      ? stored.completed.filter((id) => validIds.has(id))
+      : [...INITIAL_COMPLETED_IDS];
     const planFrom = stored?.planFrom && compareDates(stored.planFrom, TERM.start) >= 0 && compareDates(stored.planFrom, TERM.end) <= 0
       ? stored.planFrom
       : defaultPlanFrom();
     return { completed: new Set(completed), planFrom };
   } catch {
-    return { completed: new Set(), planFrom: defaultPlanFrom() };
+    return { completed: new Set(INITIAL_COMPLETED_IDS), planFrom: defaultPlanFrom() };
   }
 }
 
@@ -182,7 +191,8 @@ function getPlan() {
     termEnd: TERM.end,
     excludedDates: TERM.excludedDates,
     capacityByDate: TERM.capacityByDate,
-    incompatibleCourses: { baba: ["balm"], balm: ["baba"] },
+    workingWeekdays: TERM.workingWeekdays,
+    incompatibleCourses: { baba: ["baos310"], baos310: ["baba"] },
   });
 }
 
@@ -203,12 +213,12 @@ function renderMetrics(plan) {
   elements.healthMetric.classList.toggle("metric--danger", problemCount > 0);
   elements.health.textContent = problemCount ? "Needs attention" : "On track";
   elements.healthDetail.textContent = problemCount
-    ? `${lateAssignments.size} late · ${plan.unscheduled.length} cannot fit`
-    : "All work fits before its deadline";
+    ? `${lateAssignments.size} past plan · ${plan.unscheduled.length} cannot fit`
+    : "All work fits before its planned finish";
 
   if (problemCount) {
     elements.alert.hidden = false;
-    elements.alert.textContent = `${problemCount} planning conflict${problemCount === 1 ? "" : "s"}. Move the planning date earlier, finish more work, or treat the affected deadline as a manual exception.`;
+    elements.alert.textContent = `${problemCount} planning conflict${problemCount === 1 ? "" : "s"}. Finish more work, move the planning date earlier, or revise the affected target in the vault board.`;
   } else {
     elements.alert.hidden = true;
     elements.alert.textContent = "";
@@ -312,8 +322,8 @@ elements.recalculate.addEventListener("click", () => {
 });
 
 elements.reset.addEventListener("click", () => {
-  if (!window.confirm("Clear every completed assignment and restore the original planning date?")) return;
-  state = { completed: new Set(), planFrom: TERM.start };
+  if (!window.confirm("Restore the completion state recorded in the vault board and reset the planning date?")) return;
+  state = { completed: new Set(INITIAL_COMPLETED_IDS), planFrom: defaultPlanFrom() };
   elements.planFrom.value = state.planFrom;
   saveState("Progress reset");
   render();
